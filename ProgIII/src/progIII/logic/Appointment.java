@@ -1,16 +1,17 @@
 package progIII.logic;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Appointment {
 	
 //prueba 2 portatil lucas
 
-	private Date date;
+	private String date;
 	private String iniH, finH;
 	private String reason;
 
-	public Appointment(Date date, String iniH, String finH, String reason) {
+	public Appointment(String date, String iniH, String finH, String reason) {
 		this.date = date;
 		this.iniH = iniH;
 		this.finH = finH;
@@ -39,11 +40,11 @@ public class Appointment {
 		this.reason = null;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
