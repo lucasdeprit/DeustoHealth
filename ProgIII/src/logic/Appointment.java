@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Appointment {
 	
-	// primeros pasos
+
 
 	private Date date;
 	private String iniH, finH;
