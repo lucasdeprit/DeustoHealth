@@ -1,0 +1,61 @@
+# DeustoHealth
+DeustoHealth
+
+Resumen/Contexto
+
+Crear un programa que permita la gestión de citas de los pacientes para ir al médico, los usuarios deberán darse de alta para poder tener acceso. De estos usuarios se almacenará el DNI, una contraseña y el rol de este usuario (paciente o médico) estos datos se utilizarán en el login. Tras realizar este paso, accederemos a la ventana principal, donde se mostrará la información del usuario, el expediente médico, las citas reservadas y podremos solicitar una cita. En la siguiente ventana, deberán introducirse los siguientes datos; día, mes, año, hora, motivo de la cita, etc. Tras rellenar los datos necesarios se le asignará un médico@. Todos los procesos serán almacenados en bases de datos y en archivos de texto, es decir, se guardarán los médicos, los pacientes, los historiales, las citas … 
+
+Objetivos del proyecto y funcionalidad
+
+El objetivo del proyecto es crear un programa cuya interfaz sea sencilla de utilizar, facilite a los usuarios el no tener que ir hasta su centro médico más cercano para pedir cita, los médicos podrán gestionar sus citas y observar el historial de sus pacientes. Además, nos ayudará a que no se olviden las citas al ser notificados de cuando es/son.
+Este sistema nos ayudará también a tener cierta fluidez en los hospitales y a reducir los largos tiempos en las salas de espera.
+
+Ideas de interfaz
+
+Ventana 1: Ventana en la que el usuario podrá entrar con su cuenta. Si el usuario desea registrarse puede hacerlo pulsando en el botón
+“Registro”, que lo llevará a la Ventana 2.
+
+
+
+Ventana 2: Ventana en la que el usuario podrá registrarse en la base de datos introduciendo sus datos personales (Nombre, DNI,
+Dirección, NSS,...).
+Debemos comprobar cuál es el rol del usuario, es decir, si es médico o si es un paciente. Dependiendo de este rol se abrirá una
+ventana u otra.
+
+Ventana 3: Ventana Principal  del paciente, en la que se ejecutará el programa, el paciente podrá elegir “Pedir cita” se le redirige
+a la Ventana 4, si elige “Próximas citas”, se le lleva a la Ventana 5.
+
+Ventana 4. Ventana en la que se pedirá una cita, se deberán rellenar los campos, si todo es correcto nos asignan un médico y nuestra
+cita será aceptada. En esta ventana podremos observar la disponibilidad de médicos en esta especialidad, para que el usuario pueda 
+escoger a qué hora quiere la cita.
+
+Ventana 5. Aquí podremos observar las próximas citas que hemos solicitado y ver los detalles de cada una de ellas (Médico asignado,
+motivo, gravedad,...). 
+
+Ventana 6. Esta ventana será la principal del médico, podremos elegir entre ver que citas tiene el médico (Ventana 7), 
+cancelar una cita (Ventana 8), mirar el expediente de sus pacientes (Ventana 9).
+
+Ventana 7. El médico podrá visualizar en una ventana las próximas citas que tiene, es decir, tendrá un calendario en el
+que visualizará las citas.
+
+
+
+Ventana 8. El médico podrá seleccionar una o más citas que quiera cancelar, dado que por motivos personales no esté disponible,
+por lo tanto, los pacientes que hayan perdido su cita por este motivo se les notificará para que puedan escoger otra cita.
+
+Ventana 9. Esta ventana permitirá que el médico pueda ver el historial médico de sus pacientes. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Grupo: P02-09.
+Participantes: Joel De la Calle,Lucas Deprit,Aitor Morais.
