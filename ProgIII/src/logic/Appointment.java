@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Appointment {
 	
-
+//prueba 2 portatil lucas
 
 	private Date date;
 	private String iniH, finH;
