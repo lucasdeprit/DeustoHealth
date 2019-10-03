@@ -1,4 +1,4 @@
-package logic;
+package progIII.logic;
 
 import java.util.ArrayList;
 import java.util.Date;
