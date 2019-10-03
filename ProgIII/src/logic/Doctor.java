@@ -1,0 +1,94 @@
+package logic;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Doctor extends User {
+
+	private int dNumber;
+	private String speciality;
+	private boolean disp;
+	List<Appointment> calendar = new ArrayList<Appointment>();
+
+	public Doctor(int dNumber) {
+		super();
+		this.setdNumber(dNumber);
+	}
+
+	public Doctor(int number, String name, String id, String password, String address, String mail) {
+
+		this.setdNumber(number);
+		this.setName(name);
+		this.setId(id);
+		this.setPassword(password);
+		this.setAddress(address);
+		this.setMail(mail);
+		this.setRol("Doctor");
+
+	}
+
+	// Mira a ver si el doctor tiene la agenda ocupada
+
+	public void doctorDisp(Doctor d, Appointment a) {
+		List<Appointment> c = d.getCalendar();
+		for (int i = 0; c.size() < i; i++) {
+
+			if (c.get(i).getDate().equals(a.getDate()) == true) {
+
+				d.setDisp(false);
+
+			}
+
+		}
+		d.setDisp(true);
+
+	}
+
+	// GETTERS SETTERS Y CONSTRUCTORES VARIOS
+
+	// Constructor vacío
+	public Doctor() {
+
+		this.setdNumber(-1);
+		this.setName(null);
+		this.setId(null);
+		this.setPassword(null);
+		this.setAddress(null);
+		this.setMail(null);
+		this.setRol("Doctor");
+
+	}
+
+	public int getdNumber() {
+		return dNumber;
+	}
+
+	public void setdNumber(int dNumber) {
+		this.dNumber = dNumber;
+	}
+
+	public String getSpeciality() {
+		return speciality;
+	}
+
+	public void setSpeciality(String speciality) {
+		this.speciality = speciality;
+	}
+
+	public boolean isDisp() {
+		return disp;
+	}
+
+	public void setDisp(boolean disp) {
+		this.disp = disp;
+	}
+
+	public List<Appointment> getCalendar() {
+		return calendar;
+	}
+
+	public void setCalendar(List<Appointment> calendar) {
+		this.calendar = calendar;
+	}
+
+}
