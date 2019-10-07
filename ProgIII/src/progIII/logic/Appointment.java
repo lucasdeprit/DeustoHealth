@@ -7,21 +7,28 @@ public class Appointment {
 	
 //prueba 2 portatil lucas
 
-	private String date;
-	private String iniH, finH;
+	private Date iniH, finH;
 	private String reason;
 
-	public Appointment(String date, String iniH, String finH, String reason) {
-		this.date = date;
-		this.iniH = iniH;
-		this.finH = finH;
+	public Appointment(String iniH, String finH, String reason) {
+		SimpleDateFormat formatoEstablecido = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		Date inicio=null;
+		Date fin=null;
+		try {
+			inicio=formatoEstablecido.parse(iniH);
+			fin=formatoEstablecido.parse(finH);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.iniH = inicio;
+		this.finH = fin;
 		this.reason = reason;
 	}
 
-	// Método que comprueba si han pasado las citas, en ese caso las añade al
+	// Mï¿½todo que comprueba si han pasado las citas, en ese caso las aï¿½ade al
 	// expediente
-	// y las elimina de la agenda del médico
-	// tambien se puede hacer una interfaz para no repetir este método en las dos
+	// y las elimina de la agenda del mï¿½dico
+	// tambien se puede hacer una interfaz para no repetir este mï¿½todo en las dos
 	// clases
 
 	public void refreshAppointments() {
@@ -30,37 +37,27 @@ public class Appointment {
 
 	// GETTERS SETTERS Y CONSTRUCTORES VARIOS
 
-	// Constructor vacío
+	// Constructor vacï¿½o
 
 	public Appointment() {
-
-		this.date = null;
 		this.iniH = null;
 		this.finH = null;
 		this.reason = null;
 	}
 
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public String getIniH() {
+	public Date getIniH() {
 		return iniH;
 	}
 
-	public void setIniH(String iniH) {
+	public void setIniH(Date iniH) {
 		this.iniH = iniH;
 	}
 
-	public String getFinH() {
+	public Date getFinH() {
 		return finH;
 	}
 
-	public void setFinH(String finH) {
+	public void setFinH(Date finH) {
 		this.finH = finH;
 	}
 
@@ -72,4 +69,10 @@ public class Appointment {
 		this.reason = reason;
 	}
 
+	@Override
+	public String toString() {
+		return "Appointment beggins at:  " + iniH + ", ends at : " + finH + ", reason=" + reason + "]";
+	}
+
+	
 }

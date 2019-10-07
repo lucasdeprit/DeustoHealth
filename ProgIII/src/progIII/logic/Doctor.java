@@ -9,6 +9,7 @@ public class Doctor extends User {
 	private String speciality;
 	private boolean disp;
 	List<Appointment> calendar = new ArrayList<Appointment>();
+	// private enum especialidad{PSIQUIATRA,PEDIATRA,CARDIOLOGO,GINECOLOGO}
 
 	public Doctor(int dNumber) {
 		super();
@@ -28,12 +29,12 @@ public class Doctor extends User {
 	}
 
 	// Mira a ver si el doctor tiene la agenda ocupada
-
+	//Metodo Por mejorar la cita podria ser un minuto antes y pasaria el "filtro" haciendo que un doctor tuviese a dos pacientes juntos
 	public void doctorDisp(Doctor d, Appointment a) {
 		List<Appointment> c = d.getCalendar();
 		for (int i = 0; c.size() < i; i++) {
 
-			if (c.get(i).getDate().equals(a.getDate()) == true) {
+			if (c.get(i).getIniH().equals(a.getIniH())) {
 
 				d.setDisp(false);
 
@@ -46,7 +47,8 @@ public class Doctor extends User {
 
 	// GETTERS SETTERS Y CONSTRUCTORES VARIOS
 
-	// Constructor vacío
+	// Constructor vacï¿½o
+	
 	public Doctor() {
 
 		this.setdNumber(-1);
@@ -87,7 +89,7 @@ public class Doctor extends User {
 		return calendar;
 	}
 
-	public void setCalendar(List<Appointment> calendar) {
+	public void setCalendar(List<Appointment> calendar) {	
 		this.calendar = calendar;
 	}
 

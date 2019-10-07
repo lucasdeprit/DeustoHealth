@@ -21,15 +21,15 @@ public class Patient extends User {
 
 	}
 
-	// Creación de nuevas citas
+	// Creaciï¿½n de nuevas citas
 
 	public void createAppointment(Date date, String iniH, String finH, String reason, Patient p, Doctor d) {
 
-		Appointment app = new Appointment(date, iniH, finH, reason);
+		Appointment app = new Appointment(iniH, finH, reason);
 
 		d.doctorDisp(d, app);
 
-		// si el doctor no tiene la agenda ocupada la cita se añadirá
+		// si el doctor no tiene la agenda ocupada la cita se aï¿½adirï¿½
 
 		if (d.isDisp() == true) {
 
@@ -47,7 +47,7 @@ public class Patient extends User {
 		this.nss = nss;
 	}
 
-	// Constructor vacío
+	// Constructor vacï¿½o
 
 	public Patient() {
 

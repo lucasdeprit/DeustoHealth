@@ -19,14 +19,14 @@ class DoctorTest {
 	@Before
 	public void setUp() {
 		d = new Doctor(777777, "felipe", "7777778W", "contrasenya", "bilbao", "felipeIV@gmail.com");
-		a = new Appointment ("2019-11-20", "10:08:00", "11:08:00", "nose");
+		a = new Appointment ("03/03/2010 10:00", "03/03/2010 11:08", "nose");
 	}
 	@Test
 	void testDoctorDisp() {
 		
-		 d.doctorDisp(d, a);
+		d.doctorDisp(d, a);
 		 boolean resultado = d.isDisp();
-		
+		System.out.println(a.toString());
 		assertEquals(true,resultado);
 	}
 
