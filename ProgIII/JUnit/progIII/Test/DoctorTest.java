@@ -16,7 +16,8 @@ class DoctorTest {
 
 	private Doctor d=new Doctor(777777, "felipe", "7777778W", "contrasenya", "bilbao", "felipeIV@gmail.com");
 	private Appointment a= new Appointment("10/10/2020 09:50","10/10/2020 10:00","Cuentitis");
-	private Appointment ap=new Appointment("10/10/2020 9:59", "10/10/2020 10:05 ", "Piritis");
+	private Appointment ap=new Appointment("10/10/2020 10:59", "10/10/2020 11:00 ", "Piritis");
+	private Appointment app=new Appointment("10/10/2020 09:59", "10/10/2020 11:05 ", "Piritis");
 	
 	/*@Before
 	public void setUp() {
@@ -40,10 +41,11 @@ class DoctorTest {
 	}
 	@Test
 	public void testDoctorDisp() {
-		//Falla porque no esta bien implementada la funcion doctorDisp
+		
 		d.getCalendar().add(a);
 		d.doctorDisp(ap);
-		assertEquals(false, d.isDisp());
+		
+		assertEquals(true, d.isDisp());
 	}
 	
 	  // No funcionan, debido a NullPointerExcepction

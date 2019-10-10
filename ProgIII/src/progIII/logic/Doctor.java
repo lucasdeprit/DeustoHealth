@@ -34,17 +34,16 @@ public class Doctor extends User {
 	//Metodo Por mejorar la cita podria ser un minuto antes y pasaria el "filtro" haciendo que un doctor tuviese a dos pacientes juntos
 	public void doctorDisp( Appointment a) {
 		List<Appointment> c = this.getCalendar();
+		
 		for (int i = 0; i<c.size(); i++) {
-
-			if (c.get(i).getIniH().equals(a.getIniH())) {
-
-				this.setDisp(false);
-
+			if(a.getIniH().compareTo(this.getCalendar().get(i).getFinH())>=0) {
+				this.setDisp(true);
+				
+			}
+			System.out.println(this.getCalendar().get(i).getFinH().compareTo(a.getIniH()));
 			}
 
-		}
-		this.setDisp(true);
-
+		
 	}
 
 	// GETTERS SETTERS Y CONSTRUCTORES VARIOS
