@@ -32,7 +32,7 @@ public class Doctor extends User {
 	//Metodo Por mejorar la cita podria ser un minuto antes y pasaria el "filtro" haciendo que un doctor tuviese a dos pacientes juntos
 	public void doctorDisp(Doctor d, Appointment a) {
 		List<Appointment> c = d.getCalendar();
-		for (int i = 0; c.size() < i; i++) {
+		for (int i = 0; i<c.size(); i++) {
 
 			if (c.get(i).getIniH().equals(a.getIniH())) {
 

@@ -36,5 +36,32 @@ public class AppointmentTest {
 			e.printStackTrace();
 		}
 	}
+	@Test
+	public void testConstructorVacio() {
+		System.out.println(a1.toString()); 
+		System.out.println(a2.toString());
+		//Probamos el constructor vacio funciona
+		assertEquals(null, a1.getIniH());
+		assertEquals(null, a1.getFinH());
+		assertEquals(null, a1.getReason());
+		
+	}
+	@Test
+	public void testConstructorNoVacio() {
+		SimpleDateFormat formatoEstablecido = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		Date inicio=null;
+		Date fin=null;
+		try {
+			inicio=formatoEstablecido.parse("10/10/2019 09:54");
+			fin=formatoEstablecido.parse("10/10/2019 11:08");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		//Probamos contructor con valores
+		assertEquals(inicio, a2.getIniH());
+		assertEquals(fin, a2.getFinH());
+		assertEquals("molestias en la cadera", a2.getReason());
+	}
 
 }
