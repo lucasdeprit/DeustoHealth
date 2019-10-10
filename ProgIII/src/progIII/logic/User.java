@@ -10,7 +10,9 @@ public class User {
 	private String address;
 	private String mail;
 	private String rol;
-
+	
+	
+	
 	public String getName() {
 		return name;
 	}
