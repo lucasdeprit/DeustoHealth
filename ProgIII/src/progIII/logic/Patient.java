@@ -27,7 +27,7 @@ public class Patient extends User {
 
 		Appointment app = new Appointment(iniH, finH, reason);
 
-		d.doctorDisp(d, app);
+		d.doctorDisp(app);
 
 		// si el doctor no tiene la agenda ocupada la cita se a�adir�
 

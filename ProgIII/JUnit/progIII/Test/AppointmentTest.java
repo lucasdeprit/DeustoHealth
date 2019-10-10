@@ -38,8 +38,6 @@ public class AppointmentTest {
 	}
 	@Test
 	public void testConstructorVacio() {
-		System.out.println(a1.toString()); 
-		System.out.println(a2.toString());
 		//Probamos el constructor vacio funciona
 		assertEquals(null, a1.getIniH());
 		assertEquals(null, a1.getFinH());
@@ -48,6 +46,7 @@ public class AppointmentTest {
 	}
 	@Test
 	public void testConstructorNoVacio() {
+		//Probamos contructor funciona
 		SimpleDateFormat formatoEstablecido = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date inicio=null;
 		Date fin=null;

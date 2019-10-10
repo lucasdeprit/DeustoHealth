@@ -2,6 +2,8 @@ package progIII.Test;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.Date;
 
@@ -12,20 +14,38 @@ import progIII.logic.*;
 
 class DoctorTest {
 
-	private Doctor d;
-	private Appointment a;
+	private Doctor d=new Doctor(777777, "felipe", "7777778W", "contrasenya", "bilbao", "felipeIV@gmail.com");
+	private Appointment a= new Appointment("10/10/2020 09:50","10/10/2020 10:00","Cuentitis");
+	private Appointment ap=new Appointment("10/10/2020 9:59", "10/10/2020 10:05 ", "Piritis");
 	
-	@Before
+	/*@Before
 	public void setUp() {
 		d = new Doctor(777777, "felipe", "7777778W", "contrasenya", "bilbao", "felipeIV@gmail.com");
 		a = new Appointment ("03/03/2010 10:00", "03/03/2010 11:08", "nose");
-		System.out.println(d.getName());
+		//System.out.println(d.getName());
 	}
-	
+	*/
 	@Test
 	public void testConstructor() {
-		System.out.println(d.toString());
+		
+		//d = new Doctor(777777, "felipe", "7777778W", "contrasenya", "bilbao", "felipeIV@gmail.com");
+		//assertEquals(777777, d.getdNumber());
+		assertNotNull(d);
 	}
+	@Test
+	public void testGetters() {
+	assertNotNull(d.isDisp());
+	
+	
+	}
+	@Test
+	public void testDoctorDisp() {
+		//Falla porque no esta bien implementada la funcion doctorDisp
+		d.getCalendar().add(a);
+		d.doctorDisp(ap);
+		assertEquals(false, d.isDisp());
+	}
+	
 	  // No funcionan, debido a NullPointerExcepction
 	/*
 	@Test

@@ -8,7 +8,7 @@ public class Doctor extends User {
 	private int dNumber;
 	private String speciality;
 	private boolean disp;
-	List<Appointment> calendar = new ArrayList<Appointment>();
+	List<Appointment> calendar ;
 	// private enum especialidad{PSIQUIATRA,PEDIATRA,CARDIOLOGO,GINECOLOGO}
 
 	public Doctor(int dNumber) {
@@ -25,23 +25,25 @@ public class Doctor extends User {
 		this.setAddress(address);
 		this.setMail(mail);
 		this.setRol("Doctor");
+		this.disp=false;
+		this.calendar= new ArrayList<>();
 
 	}
 
 	// Mira a ver si el doctor tiene la agenda ocupada
 	//Metodo Por mejorar la cita podria ser un minuto antes y pasaria el "filtro" haciendo que un doctor tuviese a dos pacientes juntos
-	public void doctorDisp(Doctor d, Appointment a) {
-		List<Appointment> c = d.getCalendar();
+	public void doctorDisp( Appointment a) {
+		List<Appointment> c = this.getCalendar();
 		for (int i = 0; i<c.size(); i++) {
 
 			if (c.get(i).getIniH().equals(a.getIniH())) {
 
-				d.setDisp(false);
+				this.setDisp(false);
 
 			}
 
 		}
-		d.setDisp(true);
+		this.setDisp(true);
 
 	}
 
@@ -84,6 +86,7 @@ public class Doctor extends User {
 	public void setDisp(boolean disp) {
 		this.disp = disp;
 	}
+	
 
 	public List<Appointment> getCalendar() {
 		return calendar;
