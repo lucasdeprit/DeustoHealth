@@ -2,6 +2,7 @@ package progIII.logic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class Doctor extends User {
 
@@ -31,16 +32,15 @@ public class Doctor extends User {
 	}
 
 	// Mira a ver si el doctor tiene la agenda ocupada
-	//Metodo Por mejorar la cita podria ser un minuto antes y pasaria el "filtro" haciendo que un doctor tuviese a dos pacientes juntos
+	
 	public void doctorDisp( Appointment a) {
 		List<Appointment> c = this.getCalendar();
-		
+		this.setDisp(false);
 		for (int i = 0; i<c.size(); i++) {
-			if(a.getIniH().compareTo(this.getCalendar().get(i).getFinH())>=0) {
+			if(a.getIniH().after(this.getCalendar().get(i).getFinH())) {
 				this.setDisp(true);
 				
 			}
-			System.out.println(this.getCalendar().get(i).getFinH().compareTo(a.getIniH()));
 			}
 
 		
