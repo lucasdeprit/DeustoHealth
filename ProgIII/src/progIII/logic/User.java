@@ -1,18 +1,13 @@
 package progIII.logic;
 
-public class User {
-
-	// CLASE QUE SE CONVERTIRÁ EN ABSTRACTA PARA QUE NO SE PUEDAN CREAR USUARIOS
-
+class User {
+	// CLASE QUE SE CONVERTIRï¿½ EN ABSTRACTA PARA QUE NO SE PUEDAN CREAR USUARIOS
 	private String name;
 	private String id;
 	private String password;
 	private String address;
 	private String mail;
 	private String rol;
-	
-	
-	
 	public String getName() {
 		return name;
 	}
