@@ -20,15 +20,15 @@ public class Conexion {
 		odb.store(p);
 		odb.close();
 	}
-	public void insertPatientList(String ruta,Objects<Patient> lista) {
+	public void insertPatientList(Objects<Patient> lista) {
 		ODB odb = ODBFactory.open(this.getRuta());
 		for (int i = 0; i < lista.size(); i++) {
 			odb.store(i);
 		}
 		odb.close();
 	}
-	public void imprimirBDPatient(String ruta) {
-		ODB odb = ODBFactory.open(ruta);
+	public void imprimirBDPatient() {
+		ODB odb = ODBFactory.open(this.getRuta());
 		//Generamos un conjunto de objetos y los traemos a odb conectado Estaria bien que en vez de patient fuese User pero no consigo ponerlo asi
 		Objects<Patient> objects=odb.getObjects(Patient.class);
 		//Numero de objetos en la BD
@@ -36,7 +36,7 @@ public class Conexion {
 		int i=1;
 		while(objects.hasNext()){
 
-		       // Creo un objeto Jugadores y almaceno ahí el objeto
+		       // Creo un objeto Patient y almaceno ahí el objeto
 		       Patient p= objects.next();
 		      
 		       // Imprimo las propiedades que me interes de ese objeto en este caso todas
