@@ -15,9 +15,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+
 public class Login {
 	
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField User_textField;
 	private JPasswordField User_passwordField;
 	
@@ -114,11 +115,12 @@ public class Login {
 		password_lbl.setBounds(84, 123, 38, 45);
 		frame.getContentPane().add(password_lbl);
 		
-		JLabel title_lbl = new JLabel("DEUSTOHEALTH LOGIN");
+		JLabel title_lbl = new JLabel(" DEUSTOHEALTH LOGIN");
 		title_lbl.setForeground(SystemColor.text);
 		title_lbl.setHorizontalAlignment(SwingConstants.CENTER);
 		title_lbl.setFont(new Font("Imprint MT Shadow", Font.ITALIC, 20));
-		title_lbl.setBounds(84, 21, 275, 50);
+		title_lbl.setBounds(60, 21, 315, 50);
+		title_lbl.setIcon(new ImageIcon(Login.class.getResource("/icons8-user-30.png")));//User icon by Icons8 
 		frame.getContentPane().add(title_lbl);
 		
 		
