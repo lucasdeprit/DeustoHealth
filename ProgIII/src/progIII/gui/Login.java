@@ -70,7 +70,9 @@ public class Login {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				frame.dispose();
+				Register register_window = new Register();
+				register_window.frame.setVisible(true);
 			}
 		});
 		btnRegister.setForeground(new Color(51,0,51)); 
@@ -82,6 +84,7 @@ public class Login {
 		JButton btnExit = new JButton("SALIR");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
 			}
 		});
 		btnExit.setForeground(new Color(51,0,51)); 

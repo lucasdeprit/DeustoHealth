@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 public class Register {
 	
-	private JFrame frame;
+	public JFrame frame;
 	
 	/* Lanzar la ventana()
 	*/
