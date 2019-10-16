@@ -7,7 +7,6 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -101,13 +100,13 @@ public class Login {
 		
 		JLabel user_lbl = new JLabel("");
 		user_lbl.setHorizontalAlignment(SwingConstants.CENTER);							 //definimos el punto de referencia para la alineación horizontal que seleccionamos
-		user_lbl.setIcon(new ImageIcon(Login.class.getResource("/icons8-user-30.png"))); //ruta de la imagen que situaremos en este label.
+		//user_lbl.setIcon(new ImageIcon(Login.class.getResource("/icons8-user-30.png"))); //ruta de la imagen que situaremos en este label.
 		user_lbl.setBounds(89, 82, 32, 30);												 //User icon by Icons8
 		frame.getContentPane().add(user_lbl);
 		
 		JLabel password_lbl = new JLabel("");
 		password_lbl.setHorizontalAlignment(SwingConstants.CENTER);
-		password_lbl.setIcon(new ImageIcon(Login.class.getResource("/icons8-password-1-48.png"))); //Password1 icon by Icons8
+		//password_lbl.setIcon(new ImageIcon(Login.class.getResource("/icons8-password-1-48.png"))); //Password1 icon by Icons8
 		password_lbl.setBounds(84, 123, 38, 45);
 		frame.getContentPane().add(password_lbl);
 		
@@ -117,5 +116,7 @@ public class Login {
 		title_lbl.setFont(new Font("Imprint MT Shadow", Font.ITALIC, 20));
 		title_lbl.setBounds(84, 21, 275, 50);
 		frame.getContentPane().add(title_lbl);
+		
+		
 	}
 }
