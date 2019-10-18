@@ -16,6 +16,7 @@ Patient p= new Patient("Pepito", "123", "pass", "micasa", "email@email.com");
 	@Test
 	public void getRutatest() {
 		assertEquals(bd.getPath(), c.getRuta());
+		assertEquals(true, bd.exists());
 		
 	}
 	@Test
