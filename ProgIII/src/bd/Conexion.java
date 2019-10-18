@@ -38,7 +38,6 @@ public class Conexion {
 		System.out.println(objects.size()+"Patients: ");
 		int i=1;
 		while(objects.hasNext()){
-
 		       // Creo un objeto Patient y almaceno ahí el objeto
 		       Patient p= objects.next();
 		      

@@ -3,6 +3,7 @@ package progIII.Test;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.IOError;
 
 import org.junit.Test;
 
@@ -16,18 +17,24 @@ Patient p= new Patient("Pepito", "123", "pass", "micasa", "email@email.com");
 	@Test
 	public void getRutatest() {
 		assertEquals(bd.getPath(), c.getRuta());
-		assertEquals(true, bd.exists());
 		
+		
+	}
+	@Test
+	public void Existe() {
+		assertEquals(true, bd.exists());
 	}
 	@Test
 	public void  insertTest() {
 	
 	if (bd.exists()) {
 		c.insertPatient(p);
-	}
-	System.out.println(c.ReturnBdinList().getFirst().getName());
-	assertEquals(p, c.ReturnBdinList().getFirst());
-		//c.insertPatient(p);
-	}
-
+		System.out.println(bd.getName());
+		assertEquals("123", c.ReturnBdinList().getFirst().getId());
+		
+				}
+	
+	bd.deleteOnExit();
+		}	
 }
+
