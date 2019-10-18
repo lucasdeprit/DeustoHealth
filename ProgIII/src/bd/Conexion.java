@@ -1,17 +1,20 @@
 package bd;
+import java.io.File;
+import java.util.ArrayList;
+
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 import org.neodatis.odb.Objects;
 import progIII.logic.Patient;
 public class Conexion {
-	String ruta;
-	public Conexion(String ruta) {
-		this.ruta=ruta;
+	File ruta;
+	public Conexion(File bd) {
+		this.ruta=bd;
 	}
 	public String getRuta() {
-		return ruta;
+		return ruta.getPath();
 	}
-	public void setRuta(String ruta) {
+	public void setRuta(File ruta) {
 		this.ruta = ruta;
 	}
 	public void insertPatient(Patient p) {
@@ -43,6 +46,13 @@ public class Conexion {
 		       System.out.println((i++) + "\t: " + p.toString());
 		 }
 		odb.close();
+		
+	}
+	public Objects<Patient> ReturnBdinList(){
+		ODB odb = ODBFactory.open(this.getRuta());
+		Objects<Patient> objects=odb.getObjects(Patient.class);
+		odb.close();
+		return objects;
 		
 	}
 }
