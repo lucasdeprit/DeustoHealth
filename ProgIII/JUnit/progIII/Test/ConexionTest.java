@@ -26,14 +26,9 @@ Patient p= new Patient("Pepito", "123", "pass", "micasa", "email@email.com");
 	}
 	@Test
 	public void  insertTest() {
-	
-	if (bd.exists()) {
-		c.insertPatient(p);
-		System.out.println(bd.getName());
-		assertEquals("123", c.ReturnBdinList().getFirst().getId());
-		
-				}
-	
+	c.insertPatient(p);
+	System.out.println(bd.getName());
+	assertEquals("123", c.ReturnBdinList().getFirst().getId());
 	bd.deleteOnExit();
 		}	
 }
