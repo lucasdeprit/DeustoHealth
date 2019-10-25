@@ -26,10 +26,12 @@ Patient p= new Patient("Pepito", "123", "pass", "micasa", "email@email.com");
 	}
 	@Test
 	public void  insertTest() {
+	c.abrir();
 	c.insertPatient(p);
 	System.out.println(bd.getName());
 	assertEquals("123", c.ReturnBdinList().getFirst().getId());
 	bd.deleteOnExit();
+	c.cerrar();
 		}	
 }
 
