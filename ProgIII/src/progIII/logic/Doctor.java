@@ -2,24 +2,17 @@ package progIII.logic;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class Doctor extends User {
 
-	private int dNumber;
+	//private int dNumber;
 	private String speciality;
 	private boolean disp;
 	List<Appointment> calendar ;
 	// private enum especialidad{PSIQUIATRA,PEDIATRA,CARDIOLOGO,GINECOLOGO}
 
-	public Doctor(int dNumber) {
-		super();
-		this.setdNumber(dNumber);
-	}
+	public Doctor(String name, String id, String password, String address, String mail) {
 
-	public Doctor(int number, String name, String id, String password, String address, String mail) {
-
-		this.setdNumber(number);
 		this.setName(name);
 		this.setId(id);
 		this.setPassword(password);
@@ -32,27 +25,26 @@ public class Doctor extends User {
 	}
 
 	// Mira a ver si el doctor tiene la agenda ocupada
-	
+
 	public void doctorDisp( Appointment a) {
 		List<Appointment> c = this.getCalendar();
 		this.setDisp(false);
 		for (int i = 0; i<c.size(); i++) {
 			if(a.getIniH().after(this.getCalendar().get(i).getFinH())) {
 				this.setDisp(true);
-				
-			}
-			}
 
-		
+			}
+		}
+
+
 	}
 
 	// GETTERS SETTERS Y CONSTRUCTORES VARIOS
 
 	// Constructor vac�o
-	
+
 	public Doctor() {
 
-		this.setdNumber(-1);
 		this.setName(null);
 		this.setId(null);
 		this.setPassword(null);
@@ -62,13 +54,6 @@ public class Doctor extends User {
 
 	}
 
-	public int getdNumber() {
-		return dNumber;
-	}
-
-	public void setdNumber(int dNumber) {
-		this.dNumber = dNumber;
-	}
 
 	public String getSpeciality() {
 		return speciality;
@@ -85,7 +70,7 @@ public class Doctor extends User {
 	public void setDisp(boolean disp) {
 		this.disp = disp;
 	}
-	
+
 
 	public List<Appointment> getCalendar() {
 		return calendar;
