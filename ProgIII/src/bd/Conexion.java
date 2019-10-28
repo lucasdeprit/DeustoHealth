@@ -1,7 +1,5 @@
 package bd;
 import java.io.File;
-import java.util.ArrayList;
-
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 import org.neodatis.odb.Objects;
@@ -13,6 +11,11 @@ public class Conexion {
 		this.ruta=bd;
 		this.odb=null;
 	}
+
+	public ODB getOdb() {
+		return odb;
+	}
+
 	public String getRuta() {
 		return ruta.getPath();
 	}
@@ -50,7 +53,8 @@ public class Conexion {
 		
 	}
 	public void abrir() {
-		this.odb = ODBFactory.open(this.getRuta());
+		ODB nodb= this.getOdb();
+		nodb = ODBFactory.open(this.getRuta());
 	}
 	public void cerrar() {
 		this.odb.close();

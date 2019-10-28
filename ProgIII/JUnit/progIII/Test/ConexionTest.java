@@ -16,6 +16,7 @@ Conexion c= new Conexion(bd);
 Patient p= new Patient("Pepito", "123", "pass", "micasa", "email@email.com");
 	@Test
 	public void getRutatest() {
+		System.out.println(c.getRuta());
 		assertEquals(bd.getPath(), c.getRuta());
 		
 		

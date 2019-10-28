@@ -6,9 +6,11 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,7 +21,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import bd.Conexion;
 import bd.SqliteDatabase;
+import progIII.logic.Patient;
 
 public class Register {
 	
@@ -51,12 +55,13 @@ public class Register {
 		initialize();
 		conn = SqliteDatabase.initBD("Usuarios");
 		
+		
 	}
 
 	private void initialize() { // definir contenidos ventana para inicializarlos
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.textHighlight);
-		frame.setBounds(100,100,450,300); // definir tamaño ventana
+		frame.setBounds(100,100,450,300); // definir tamaï¿½o ventana
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null); // definir distribucion componentes en la ventana
 		frame.setUndecorated(true); //para remover el marco de la ventana
@@ -118,6 +123,8 @@ public class Register {
 		JButton register_btn = new JButton("");
 		register_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				//BD JOEL
 				String p = "paciente";
 				String d = "doctor";
 				
@@ -165,7 +172,7 @@ public class Register {
 					}
 				}else{
 					JOptionPane.showMessageDialog(null, rol_textField.getText().toString());
-					JOptionPane.showMessageDialog(null, "Introduce un ROL compatible: paciente o médico");
+					JOptionPane.showMessageDialog(null, "Introduce un ROL compatible: paciente o mï¿½dico");
 				}
 			}
 		});

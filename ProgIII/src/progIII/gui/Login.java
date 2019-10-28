@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import bd.Conexion;
 
 
 public class Login {
@@ -40,6 +43,10 @@ public class Login {
 	
 	public Login() { // inicializar contenidos de la ventana
 		initialize();
+		/*File archivo = new File("JUnit/Bdtest/bdTest.test");
+		Conexion bd = new Conexion(archivo);
+		bd.abrir();
+		bd.*/
 	}
 
 	private void initialize() { // definir contenidos ventana para inicializarlos
