@@ -130,50 +130,49 @@ public class Register {
 				
 				SqliteDatabase.usarCrearTablasBD(conn);
 				
-				if(rol_textField.getText().toLowerCase().equals(p)){
+				if(rol_textField.getText() != null) {
 					
-					JOptionPane.showMessageDialog(null, rol_textField);
-					try (PreparedStatement pst = conn.prepareStatement("INSERT INTO patient(name,id,password,address,mail) VALUES(?,?,?,?,?)");) 
-					{
-						pst.setString(1, name_textField.getText());
-						pst.setString(2, id_textField.getText());
-						pst.setString(3, user_passwordField.getPassword().toString());
-						pst.setString(4, address_textField.getText());
-						pst.setString(5, email_textField.getText());
+					if(rol_textField.getText().toLowerCase().equals(p)){
 						
-						pst.executeUpdate();
+						try (PreparedStatement pst = conn.prepareStatement("INSERT INTO patient(name,id,password,address,mail) VALUES(?,?,?,?,?)");) 
+						{
+							pst.setString(1, name_textField.getText());
+							pst.setString(2, id_textField.getText());
+							pst.setString(3, user_passwordField.getPassword().toString());
+							pst.setString(4, address_textField.getText());
+							pst.setString(5, email_textField.getText());
+							
+							pst.executeUpdate();
+							
+							JOptionPane.showMessageDialog(null, "Paciente registrado");
+							
+						}catch(Exception e) {
+							e.printStackTrace();
+						}
+					}if(rol_textField.getText().toLowerCase().equals(d)){
 						
-						JOptionPane.showMessageDialog(null, "Paciente registrado");
-						
-					}catch(Exception e) {
-						e.printStackTrace();
-					}
-				}if(rol_textField.getText().toLowerCase().equals(d)){
-					JOptionPane.showMessageDialog(null, rol_textField);
-					try {
-						
-						String query = "INSERT INTO doctor(name,id,password,address,mail) VALUES(?,?,?,?,?)";
-						PreparedStatement pst = conn.prepareStatement(query);
-						pst.setString(1, name_textField.getText());
-						pst.setString(2, id_textField.getText());
-						pst.setString(3, user_passwordField.getPassword().toString());
-						pst.setString(4, address_textField.getText());
-						pst.setString(5, email_textField.getText());
-						
-						ResultSet rs = pst.executeQuery();
-						
-						JOptionPane.showMessageDialog(null, "Doctor registrado");
-						
-						pst.close();
-						rs.close();
-						
-					}catch(Exception e) {
-						e.printStackTrace();
-					}
-				}else{
-					JOptionPane.showMessageDialog(null, rol_textField.getText().toString());
-					JOptionPane.showMessageDialog(null, "Introduce un ROL compatible: paciente o m�dico");
+						try (PreparedStatement pst = conn.prepareStatement("INSERT INTO doctor(name,id,password,address,mail) VALUES(?,?,?,?,?)");) 
+						{
+							pst.setString(1, name_textField.getText());
+							pst.setString(2, id_textField.getText());
+							pst.setString(3, user_passwordField.getPassword().toString());
+							pst.setString(4, address_textField.getText());
+							pst.setString(5, email_textField.getText());
+							
+							pst.executeUpdate();
+							
+							JOptionPane.showMessageDialog(null, "Doctor registrado");
+							
+							
+						}catch(Exception e) {
+							e.printStackTrace();
+						}
+					
 				}
+					
+				}else{
+					JOptionPane.showMessageDialog(null, "Introduce un ROL compatible: paciente o doctor");
+					}
 			}
 		});
 		register_btn.setIcon(new ImageIcon(Register.class.getResource("/icons8-registration-64.png"))); //Registration icon by Icons8
