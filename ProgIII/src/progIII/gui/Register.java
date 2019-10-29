@@ -129,9 +129,10 @@ public class Register {
 				String p = "paciente";
 				String d = "doctor";
 				
-				SqliteDatabase.usarCrearTablasBD(conn);
 				
-				if(rol_textField.getText() != null) {
+				if( rol_textField.getText().toLowerCase().equals(p) || rol_textField.getText().toLowerCase().equals(d) ) {
+					
+					SqliteDatabase.usarCrearTablasBD(conn);
 					
 					if(rol_textField.getText().toLowerCase().equals(p)){
 						
