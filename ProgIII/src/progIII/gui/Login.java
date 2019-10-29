@@ -16,8 +16,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import bd.Conexion;
-
 
 public class Login {
 	
@@ -56,7 +54,7 @@ public class Login {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null); // definir distribucion componentes en la ventana
 		frame.setUndecorated(true); //para remover el marco de la ventana
-		
+		frame.setLocationRelativeTo(null); // para centrar la ventana
 		
 		JButton btnLogin = new JButton("INICIAR SESION"); // crear boton
 		btnLogin.addActionListener(new ActionListener() { // definir accion que ejecutar� el boton
@@ -129,7 +127,7 @@ public class Login {
 		title_lbl.setBounds(60, 21, 315, 50);
 		title_lbl.setIcon(new ImageIcon(Login.class.getResource("/icons8-user-30.png")));//User icon by Icons8 
 		frame.getContentPane().add(title_lbl);
-		
-		
+			
 	}
+	
 }

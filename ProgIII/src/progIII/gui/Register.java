@@ -65,6 +65,7 @@ public class Register {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null); // definir distribucion componentes en la ventana
 		frame.setUndecorated(true); //para remover el marco de la ventana
+		frame.setLocationRelativeTo(null); // para centrar la ventana
 		
 		JLabel name_lbl = new JLabel("NOMBRE:");
 		name_lbl.setForeground(Color.WHITE);
