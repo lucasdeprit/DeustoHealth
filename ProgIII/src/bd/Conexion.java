@@ -7,9 +7,12 @@ import progIII.logic.Patient;
 public class Conexion {
 	private File ruta;
 	private ODB odb;
-	public Conexion(File bd) {
+	
+
+	public Conexion(File bd, ODB odb) {
+		// TODO Auto-generated constructor stub
 		this.ruta=bd;
-		this.odb=null;
+		this.odb= odb;
 	}
 
 	public ODB getOdb() {
@@ -24,7 +27,7 @@ public class Conexion {
 	}
 	public void insertPatient(Patient p) {
 		//Importante que la ruta acabe con un fichero .test Ejemplo: bd.test
-		this.odb.store(p);
+		this.getOdb().store(p);
 	}
 	public void insertPatientList(Objects<Patient> lista) {
 		for (int i = 0; i < lista.size(); i++) {
@@ -52,9 +55,9 @@ public class Conexion {
 		return objects;
 		
 	}
-	public void abrir() {
-		ODB nodb= this.getOdb();
-		nodb = ODBFactory.open(this.getRuta());
+	
+	public void setOdb(ODB odb) {
+		this.odb = odb;
 	}
 	public void cerrar() {
 		this.odb.close();
