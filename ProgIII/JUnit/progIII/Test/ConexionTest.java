@@ -1,17 +1,11 @@
 package progIII.Test;
-
 import static org.junit.Assert.*;
-
 import java.io.File;
-import java.io.IOError;
-
 import org.junit.Test;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
-
 import bd.Conexion;
 import progIII.logic.Patient;
-
 public class ConexionTest {
 File bd=new File("JUnit/Bdtest/bdTest.test");
 ODB odb ;//= ODBFactory.open(bd.getPath());
@@ -20,8 +14,6 @@ Patient p= new Patient("Pepito", "123", "pass", "micasa", "email@email.com");
 	@Test
 	public void getRutatest() {
 		assertEquals(bd.getPath(), c.getRuta());
-		
-		
 	}
 	@Test
 	public void Existe() {
