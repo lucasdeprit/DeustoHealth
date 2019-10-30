@@ -13,8 +13,7 @@ Conexion c= new Conexion(bd,odb);
 Patient p= new Patient("Pepito", "123", "pass", "micasa", "email@email.com");
 	@Test
 	public void getRutatest() {
-		assertEquals(bd.getPath(), c.getRuta());
-	}
+		assertEquals(bd.getPath(), c.getRuta());}
 	@Test
 	public void Existe() {
 		ODB odb1 = ODBFactory.open(this.bd.getPath());
