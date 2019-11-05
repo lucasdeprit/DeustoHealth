@@ -18,6 +18,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import org.neodatis.odb.ODB;
+import org.neodatis.odb.ODBFactory;
+
 import bd.Conexion;
 import bd.SqliteDatabase;
 import progIII.logic.Patient;
@@ -49,13 +53,16 @@ public class Register {
 	}
 	
 	public Register() { // inicializar contenidos de la ventana
-		initialize();
+		File bd = new File("data/bd.test");
+		ODB odb1 = null;
+		Conexion c = new Conexion(bd, odb1);
+		initialize(c);
 		conn = SqliteDatabase.initBD("Usuarios");
 		
 		
 	}
 
-	private void initialize() { // definir contenidos ventana para inicializarlos
+	private void initialize(Conexion c) { // definir contenidos ventana para inicializarlos
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.textHighlight);
 		frame.setBounds(100,100,450,300); // definir tama�o ventana
@@ -121,6 +128,25 @@ public class Register {
 		JButton register_btn = new JButton("");
 		register_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// BD AITOR
+				try {
+					if( rol_textField.getText().toLowerCase().equals("paciente") || rol_textField.getText().toLowerCase().equals("doctor") ) {
+						ODB abrir = ODBFactory.open(c.getRuta());
+						c.setOdb(abrir);
+						//De momento solo funciona con paciente
+						
+						
+					}
+					Patient paciente = new Patient(name_textField.getText(),id_textField.getText(),user_passwordField.getPassword().toString(),address_textField.getText(),email_textField.getText());
+					c.insertPatient(paciente);
+				} finally {
+					// TODO: handle finally clause
+					c.cerrar();
+				}
+				
+				
+			
+				
 				
 				//BD JOEL
 				String p = "paciente";

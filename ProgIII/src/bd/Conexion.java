@@ -3,6 +3,8 @@ import java.io.File;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 import org.neodatis.odb.Objects;
+import org.neodatis.odb.core.query.IQuery;
+import progIII.logic.Doctor;
 import progIII.logic.Patient;
 public class Conexion {
 	private File ruta;
@@ -35,6 +37,10 @@ public class Conexion {
 		}
 		
 	}
+	private void eliminarPatient(String atributo,String valor) {
+		//IQuery query = new CriteriaQuery(Jugadores.class, Where.equal(atributo, valor));
+        }
+      
 	public void imprimirBDPatient() {
 		//Generamos un conjunto de objetos y los traemos a odb conectado Estaria bien que en vez de patient fuese User pero no consigo ponerlo asi
 		Objects<Patient> objects=this.odb.getObjects(Patient.class);
