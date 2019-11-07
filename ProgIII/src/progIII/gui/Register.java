@@ -24,6 +24,7 @@ import org.neodatis.odb.ODBFactory;
 
 import bd.Conexion;
 import bd.SqliteDatabase;
+import progIII.logic.Doctor;
 import progIII.logic.Patient;
 
 public class Register {
@@ -130,15 +131,19 @@ public class Register {
 			public void actionPerformed(ActionEvent arg0) {
 				// BD AITOR
 				try {
-					if( rol_textField.getText().toLowerCase().equals("paciente") || rol_textField.getText().toLowerCase().equals("doctor") ) {
-						ODB abrir = ODBFactory.open(c.getRuta());
+					ODB abrir = ODBFactory.open(c.getRuta());
+					switch (rol_textField.getText().toLowerCase()) {
+					case "paciente":
 						c.setOdb(abrir);
-						//De momento solo funciona con paciente
-						
-						
+						Patient paciente = new Patient(name_textField.getText(),id_textField.getText(),user_passwordField.getPassword().toString(),address_textField.getText(),email_textField.getText());
+						c.insertPatient(paciente);
+						break;
+					case "docotor":
+						c.setOdb(abrir);
+						Doctor d = new Doctor(name_textField.getText(),id_textField.getText(),user_passwordField.getPassword().toString(),address_textField.getText(),email_textField.getText());
+						c.insertDoctor(d);
+						break;
 					}
-					Patient paciente = new Patient(name_textField.getText(),id_textField.getText(),user_passwordField.getPassword().toString(),address_textField.getText(),email_textField.getText());
-					c.insertPatient(paciente);
 				} finally {
 					// TODO: handle finally clause
 					c.cerrar();

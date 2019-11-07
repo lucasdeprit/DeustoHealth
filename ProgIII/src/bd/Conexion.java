@@ -4,6 +4,9 @@ import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 import org.neodatis.odb.Objects;
 import org.neodatis.odb.core.query.IQuery;
+import org.neodatis.odb.core.query.criteria.Where;
+import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
+
 import progIII.logic.Doctor;
 import progIII.logic.Patient;
 public class Conexion {
@@ -27,6 +30,9 @@ public class Conexion {
 	public void setRuta(File ruta) {
 		this.ruta = ruta;
 	}
+	public void insertDoctor(Doctor d) {
+		this.getOdb().store(d);
+	}
 	public void insertPatient(Patient p) {
 		//Importante que la ruta acabe con un fichero .test Ejemplo: bd.test
 		this.getOdb().store(p);
@@ -35,10 +41,41 @@ public class Conexion {
 		for (int i = 0; i < lista.size(); i++) {
 			this.odb.store(i);
 		}
-		
+	
 	}
-	private void eliminarPatient(String atributo,String valor) {
-		//IQuery query = new CriteriaQuery(Jugadores.class, Where.equal(atributo, valor));
+	public void modificarPatient(String atributo,String valor ) {
+		IQuery query = new CriteriaQuery(Patient.class, Where.equal(atributo, valor));
+		Patient p=(Patient) odb.getObjects(query).getFirst();
+		switch (atributo.toLowerCase()) {
+		case "address":
+			p.setAddress(valor);
+			break;
+		case "id":
+			p.setId(valor);
+			
+		case "mail":
+			p.setMail(valor);
+			break;
+		case "name":
+			p.setName(valor);
+			break;
+		case "password":
+			p.setPassword(valor);
+			break;
+
+		}
+		//jug.setDeporte("Tiro de barra Aragonesa");
+		odb.store(p);
+	}
+	public void eliminarDoctor(String atributo,String valor) {
+		IQuery consulta = new CriteriaQuery(Patient.class, Where.equal(atributo, valor));
+		Doctor d=(Doctor) odb.getObjects(consulta).getFirst();
+		this.getOdb().delete(d);
+	}
+	public void eliminarPatient(String atributo,String valor) {
+		IQuery consulta = new CriteriaQuery(Patient.class, Where.equal(atributo, valor));
+		Patient p=(Patient) odb.getObjects(consulta).getFirst();
+		this.getOdb().delete(p);
         }
       
 	public void imprimirBDPatient() {
