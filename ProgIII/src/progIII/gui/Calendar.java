@@ -1,24 +1,28 @@
 package progIII.gui;
 
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
-import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.JMonthChooser;
-
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.DateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 
-public class Calendar {
+public class Calendar extends JFrame implements PropertyChangeListener {
 
-	private JFrame frame;
-	//private JMonthChooser mes;
-	private String mes;
-	private SimpleDateFormat sdf;
+	
+	private static final long serialVersionUID = 1L;
+	//the TextField for typing the date
+	JFormattedTextField  textField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
 	/**
 	 * Launch the application.
 	 */
@@ -27,7 +31,7 @@ public class Calendar {
 			public void run() {
 				try {
 					Calendar window = new Calendar();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,26 +50,61 @@ public class Calendar {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		sdf =  new SimpleDateFormat("MM");
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JButton btnAceptar = new JButton();
+														
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(368, 362);
+		Container cp = getContentPane();
+		FlowLayout flowLayout = new FlowLayout();
 		
-		btnAceptar.setText("Aceptar");
-		JCalendar calendar = new JCalendar();
-		calendar.setTodayButtonVisible(true);
-		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(btnAceptar.isSelected()) {
-					calendar.getMonthChooser().getMonth();
-									}
+		cp.setLayout(flowLayout);			
+		 			
+		 
+		textField.setValue(new Date());
+		textField.setPreferredSize(new Dimension(130, 30));
+		    
+		// display the window with the calendar
+		CalendarWindow calendarWindow = new CalendarWindow(); 
+		    
+		//wire a listener for the PropertyChange event of the calendar window
+		calendarWindow.addPropertyChangeListener(this);
+		
+		
+		JButton calendarButton = new JButton("Pick a Date");
 				
-			}
+		calendarButton.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+			//render the calendar window below the text field
+			calendarWindow.setLocation(textField.getLocationOnScreen().x, (textField.getLocationOnScreen().y + textField.getHeight()));
+			//get the Date and assign it to the calendar
+			Date d = (Date)textField.getValue();				
+				
+			calendarWindow.resetSelection(d);				
+			calendarWindow.setUndecorated(true);
+		    calendarWindow.setVisible(true);
+		  }
 		});
-		calendar.setTodayButtonText("Seleccionon Dia Actual");
-		frame.getContentPane().add(calendar, BorderLayout.CENTER);
-		frame.getContentPane().add(btnAceptar,BorderLayout.SOUTH);
+
+		//add the UI controls to the ContentPane
+		cp.add(textField);
+		cp.add(calendarButton);
+		cp.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        
+        
 	}
+	
+	 @Override
+		public void propertyChange(PropertyChangeEvent event) {
+			
+     	//get the selected date from the calendar control and set it to the text field
+			if (event.getPropertyName().equals("selectedDate")) {
+	            
+				java.util.Calendar cal = (java.util.Calendar)event.getNewValue();
+				Date selDate =  cal.getTime();
+				textField.setValue(selDate);
+	        }
+			
+		}
 
 }
