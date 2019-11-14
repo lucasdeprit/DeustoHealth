@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import progIII.logic.Appointment;
 import progIII.logic.Doctor;
 import progIII.logic.Patient;
 
@@ -54,6 +55,13 @@ public class SqliteDatabase {
 						", password string" + 	  // Contraseña del doctor
 						", address string" +	  // Dirección de residencia del doctor
 						", mail string" +		  // Correo electrónico del doctor
+						")");
+			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
+			try {
+				statement.executeUpdate("create table appointment " +
+						"(number integer" +           // Numero de cita
+						", reason string" +           // razon por la que se da la cita
+						", date_ini date" +		  // fecha de inicio de la cita
 						")");
 			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
 			log( Level.INFO, "Creada base de datos", null );
@@ -280,6 +288,91 @@ public class SqliteDatabase {
 			return false;
 		}
 	}
+	
+	
+	/////////////////////////////////////////////////////////////////////
+	//             Operaciones sobre la tabla de las citas             //
+	/////////////////////////////////////////////////////////////////////
+	
+	public static boolean appointmentInsert( Statement st, Appointment appointment ) {
+		String sentSQL = "";
+		try {
+			sentSQL = "insert into appointment (number, reason, date_ini) values(" +
+					"'" + 	secu(appointment.getId()) + "', " +
+					appointment.getReason() + ", " +
+					appointment.getIniH() +
+					")";
+			int val = st.executeUpdate( sentSQL );
+			log( Level.INFO, "BD añadida " + val + " fila\t" + sentSQL, null );
+			if (val!=1) {  // Se tiene que añadir 1 - error si no
+				log( Level.SEVERE, "Error en insert de BD\t" + sentSQL, null );
+				return false;  
+			}
+			return true;
+		} catch (SQLException e) {
+			log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
+			return false;
+		}
+	}
+	
+	
+
+	public static boolean appointmentSelect( Statement st, String idappointment ) {
+		String sentSQL = "";
+		try {
+			sentSQL = "select * from appointment where id='" + secu(idappointment) +"'";
+			ResultSet rs = st.executeQuery( sentSQL );
+			boolean existe = rs.next();  // Si existe el resultset no es vacio
+			rs.close();
+			log( Level.INFO, "BD\t" + sentSQL, null );
+			return existe;
+		} catch (SQLException e) {
+			log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public static boolean appointmentUpdate( Statement st, Appointment appointment ) {
+		String sentSQL = "";
+		try {
+			sentSQL = "update appointment set" +
+					" number=" + appointment.getId() + ", " +
+					" reason=" + appointment.getReason() + ", " +
+					" date=" + appointment.getIniH() + "'";
+			int val = st.executeUpdate( sentSQL );
+			log( Level.INFO, "BD modificada " + val + " fila\t" + sentSQL, null );
+			if (val!=1) { 
+				log( Level.SEVERE, "Error en update de BD\t" + sentSQL, null );
+				return false;  
+			}
+			return true;
+		} catch (SQLException e) {
+			log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+
+	public static boolean appointmentDelete( Statement st, Appointment appointment ) {
+		String sentSQL = "";
+		try {
+			sentSQL = "delete from appointment where number='" + secu(appointment.getId()) + "'";
+			int val = st.executeUpdate( sentSQL );
+			log( Level.INFO, "BD borrada " + val + " fila\t" + sentSQL, null );
+			return (val==1);
+		} catch (SQLException e) {
+			log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	
+	
+	
+	
 
 	/////////////////////////////////////////////////////////////////////
 	//                      Metodos privados                           //

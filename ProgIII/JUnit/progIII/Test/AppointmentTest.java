@@ -19,7 +19,7 @@ public class AppointmentTest {
 	@Before
 	public void setUp(){
 		a1 = new Appointment();
-		a2 = new Appointment("10/10/2019 09:54", "10/10/2019 11:08", "molestias en la cadera");
+		a2 = new Appointment("10/10/2019 09:54", "10/10/2019 11:08", "molestias en la cadera", "");
 	}
 
 	@Test

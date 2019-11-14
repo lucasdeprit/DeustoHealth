@@ -2,7 +2,6 @@ package progIII.Test;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import progIII.logic.Appointment;
@@ -12,9 +11,9 @@ import progIII.logic.Patient;
 public class PatientTest {
 	Patient p= new Patient("Pepito", "123", "pass", "micasa", "email@email.com");
 	Doctor d=new Doctor("felipe", "7777778W", "contrasenya", "bilbao", "felipeIV@gmail.com");
-	Appointment a= new Appointment("10/10/2020 9:50","10/10/2020 10:00","sinmotivo");
-	Appointment ap= new Appointment("10/10/2020 09:50", "10/10/2020 10:00", "Cuentitis");
-	Appointment app= new Appointment("10/11/2020 09:50", "10/11/2020 10:00", "Piritis");
+	Appointment a= new Appointment("10/10/2020 9:50","10/10/2020 10:00","sinmotivo","a1");
+	Appointment ap= new Appointment("10/10/2020 09:50", "10/10/2020 10:00", "Cuentitis", "a2");
+	Appointment app= new Appointment("10/11/2020 09:50", "10/11/2020 10:00", "Piritis", "a3");
 	/*@Before
 	public void setUp() throws Exception {
 		Patient p= new Patient("Pepito", "123", "pass", "micasa", "email@email.com");

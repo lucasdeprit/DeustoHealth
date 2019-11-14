@@ -1,12 +1,9 @@
 package progIII.gui;
 
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
 import java.awt.Container;
 import java.awt.Dimension;

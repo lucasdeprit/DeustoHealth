@@ -6,11 +6,12 @@ import java.util.Date;
 public class Appointment {
 	
 //prueba 2 portatil lucas
-
+	//private int number;
+	private String id;
 	private Date iniH, finH;
 	private String reason;
 
-	public Appointment(String iniH, String finH, String reason) {
+	public Appointment(String iniH, String finH, String reason, String id) {
 		SimpleDateFormat formatoEstablecido = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date inicio=null;
 		Date fin=null;
@@ -20,6 +21,7 @@ public class Appointment {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		this.id = id;
 		this.iniH = inicio;
 		this.finH = fin;
 		this.reason = reason;
@@ -69,10 +71,23 @@ public class Appointment {
 		this.reason = reason;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
-		return "Appointment beggins at:  " + iniH + ", ends at : " + finH + ", reason=" + reason + "]";
+		return "Appointment [id=" + id + ", iniH=" + iniH + ", finH=" + finH + ", reason=" + reason + "]";
 	}
+	
+	
+
+	
+	
 
 	
 }

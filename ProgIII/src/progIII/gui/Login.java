@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -53,6 +52,7 @@ public class Login {
 		Conexion SqliteDatabase = new Conexion(archivo);
 		SqliteDatabase.abrir();
 		SqliteDatabase.*/
+		//SqliteDatabase.usarCrearTablasBD(conn);
 	}
 
 	private void initialize() { // definir contenidos ventana para inicializarlos
@@ -61,7 +61,7 @@ public class Login {
 		frame.getContentPane().setBackground(SystemColor.textHighlight);	//color del fondo de la ventana
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null); // definir distribucion componentes en la ventana
-		frame.setUndecorated(true); //para remover el marco de la ventana
+		//frame.setUndecorated(true); //para remover el marco de la ventana
 		frame.setLocationRelativeTo(null); // para centrar la ventana
 		
 		JButton btnLogin = new JButton("INICIAR SESION"); // crear boton
