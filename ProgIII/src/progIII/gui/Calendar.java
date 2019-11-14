@@ -13,6 +13,9 @@ import java.beans.PropertyChangeListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Array;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -21,6 +24,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import bd.SqliteDatabase;
+
 import javax.swing.JComboBox;
 import java.awt.Font;
 import java.awt.Color;
@@ -33,6 +39,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 	JFormattedTextField  textField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
 	private JTextField reason_txf;
 	public JLabel username_lbl = new JLabel("New label");
+	Connection conn = null;
 	/**
 	 * Launch the application.
 	 * @throws UnsupportedLookAndFeelException 
@@ -60,13 +67,21 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 	 */
 	public Calendar() {
 		initialize();
+		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-														
+		
+		//intentando conseguir los nombres de la base de datos
+		conn = SqliteDatabase.initBD("Usuarios");
+		Statement st = null;
+		Array a = SqliteDatabase.doctorGetNameAll(st, "doctor");
+		//
+		
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(396, 372);
 		Container cp = getContentPane();
@@ -147,6 +162,15 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         time_comboBox.addItem("19:30");
         time_comboBox.addItem("20:00");
         
+        
+        JComboBox <String> doctor_comboBox = new JComboBox <String> ();
+        doctor_comboBox.setBounds(165, 52, 205, 23);
+        getContentPane().add(doctor_comboBox);
+        doctor_comboBox.addItem("GUTIERREZ"); //doctor de ejemplo
+        
+        
+        
+        
         JLabel time_lbl = new JLabel("Seleccionar hora");
         time_lbl.setHorizontalAlignment(SwingConstants.CENTER);
         time_lbl.setBounds(10, 127, 145, 23);
@@ -171,7 +195,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         			//crea un buffer o flujo intermedio antes de escribir directamente en el archivo
         			BufferedWriter bfwriter = new BufferedWriter(flwriter);
         				bfwriter.write(username_lbl.getText().toString() + "," + textField.getText().toString() + "," + time_comboBox.getSelectedItem()
-        						+ "," + reason_txf.getText().toString() + "\n");
+        						+ "," +  doctor_comboBox.getSelectedItem()  + "," + reason_txf.getText().toString() + "\n");
         			
         			//cierra el buffer intermedio
         			bfwriter.close();
@@ -205,6 +229,13 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         name_lbl.setFont(new Font("Tahoma", Font.PLAIN, 19));
         name_lbl.setBounds(10, 11, 74, 29);
         getContentPane().add(name_lbl);
+        
+        
+        
+        JLabel doctor_lbl = new JLabel("seleccionar doctor");
+        doctor_lbl.setHorizontalAlignment(SwingConstants.CENTER);
+        doctor_lbl.setBounds(10, 52, 145, 26);
+        getContentPane().add(doctor_lbl);
 	}
 	
 	

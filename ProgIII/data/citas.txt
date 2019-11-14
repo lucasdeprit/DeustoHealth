@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 New label,14/11/19,08:00,
+=======
+New label,14/11/19,08:00,GUTIERREZ,hola
+>>>>>>> branch 'lucas' of https://github.com/lucasdeprit/DeustoHealth
