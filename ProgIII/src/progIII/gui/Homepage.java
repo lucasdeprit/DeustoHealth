@@ -6,6 +6,7 @@ import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
@@ -96,6 +97,16 @@ public class Homepage {
 		make_appointment_btn.setIcon(new ImageIcon(Homepage.class.getResource("/icons8-hospital-48.png"))); // Hospital icon by Icons8
 		make_appointment_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String d = "doctor";
+				if(rol_lbl.getText().toLowerCase().equals(d)) {
+					JOptionPane.showMessageDialog(null, "El doctor no puede pedir una cita médica");
+				}else {
+					frame.dispose();
+					Calendar window = new Calendar();
+					window.username_lbl.setText(user_name_lbl.getText().toUpperCase());
+					window.setVisible(true);
+				}
+				
 			}
 		});
 		make_appointment_btn.setFont(new Font("Tahoma", Font.PLAIN, 18));
