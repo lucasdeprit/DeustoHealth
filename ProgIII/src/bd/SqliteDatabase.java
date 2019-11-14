@@ -1,10 +1,12 @@
 package bd;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -249,6 +251,28 @@ public class SqliteDatabase {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	// metodo donde se coge todos los nombres de doctores y se crea un arry con ellos	
+	public static Array doctorGetNameAll( Statement st, String table_name) {
+		
+		String sentSQL = "";
+		try {
+			sentSQL = "select name from " + secu(table_name) + ";";
+			ResultSet rs = st.executeQuery( sentSQL );
+			Array existe = rs.getArray(0) ; // Si existe el resultset no es vacio
+			rs.close();
+			log( Level.INFO, "BD\t" + sentSQL, null );
+			return existe;
+		} catch (SQLException e) {
+			log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+		
+		
 	}
 
 	public static boolean doctorUpdate( Statement st, Doctor doctor ) {
