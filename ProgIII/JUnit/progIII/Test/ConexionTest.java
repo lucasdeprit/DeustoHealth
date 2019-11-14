@@ -1,7 +1,6 @@
 package progIII.Test;
 import static org.junit.Assert.*;
 import java.io.File;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
