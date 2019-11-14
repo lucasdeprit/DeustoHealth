@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import bd.SqliteDatabase;
 
@@ -31,7 +33,10 @@ public class Login {
 	
 	/* Lanzar la ventana()
 	*/
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+		
+		UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() { 
 				try { // crear la ventana y hacerla visible			
@@ -61,7 +66,7 @@ public class Login {
 		frame.getContentPane().setBackground(SystemColor.textHighlight);	//color del fondo de la ventana
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null); // definir distribucion componentes en la ventana
-		//frame.setUndecorated(true); //para remover el marco de la ventana
+		frame.setUndecorated(true); //para remover el marco de la ventana
 		frame.setLocationRelativeTo(null); // para centrar la ventana
 		
 		JButton btnLogin = new JButton("INICIAR SESION"); // crear boton
