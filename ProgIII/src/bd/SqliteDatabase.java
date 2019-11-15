@@ -59,6 +59,7 @@ public class SqliteDatabase {
 						", mail string" +		  // Correo electrónico del doctor
 						")");
 			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
+			
 			try {
 				statement.executeUpdate("create table appointment " +
 						"(number integer" +           // Numero de cita
@@ -253,27 +254,33 @@ public class SqliteDatabase {
 		}
 	}
 	
-	// metodo donde se coge todos los nombres de doctores y se crea un arry con ellos	
-	public static Array doctorGetNameAll( Statement st, String table_name) {
-		
-		String sentSQL = "";
-		try {
-			sentSQL = "select name from " + secu(table_name) + ";";
-			ResultSet rs = st.executeQuery( sentSQL );
-			Array existe = rs.getArray(0) ; // Si existe el resultset no es vacio
-			rs.close();
-			log( Level.INFO, "BD\t" + sentSQL, null );
-			return existe;
-		} catch (SQLException e) {
-			log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
-			e.printStackTrace();
-			return null;
-		}
-		
-		
-		
-		
-	}
+	//metodo para seleccionar los nombres de los doctores
+	
+	public static ArrayList<String> selectAll(Connection conn, Statement stmt){
+        String sql = "SELECT  name  FROM  doctor";
+        ArrayList<String> arlist = new ArrayList<String>( );
+        try ( ResultSet rs  = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+        	
+        	
+            while (rs.next()) {
+            arlist.add(rs.getString("name"));
+                
+            return arlist;
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+            
+        }
+        
+		return arlist;
+    }
+   
+    
+	
 
 	public static boolean doctorUpdate( Statement st, Doctor doctor ) {
 		String sentSQL = "";

@@ -136,11 +136,12 @@ public class Register {
 						Patient paciente = new Patient(name_textField.getText(),id_textField.getText(),user_passwordField.getPassword().toString(),address_textField.getText(),email_textField.getText());
 						c.insertPatient(paciente);
 						break;
-					case "docotor":
+					case "doctor":
 						c.setOdb(abrir);
 						Doctor d = new Doctor(name_textField.getText(),id_textField.getText(),user_passwordField.getPassword().toString(),address_textField.getText(),email_textField.getText());
 						c.insertDoctor(d);
 						break;
+					
 					}
 				} finally {
 					// TODO: handle finally clause

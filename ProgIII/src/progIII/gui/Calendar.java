@@ -15,8 +15,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Array;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -66,19 +68,31 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 	 * Create the application.
 	 */
 	public Calendar() {
-		initialize();
+		try {
+			initialize();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws SQLException 
 	 */
-	private void initialize() {
+	private void initialize() throws SQLException {
 		
 		//intentando conseguir los nombres de la base de datos
+		
 		conn = SqliteDatabase.initBD("Usuarios");
-		Statement st = null;
-		Array a = SqliteDatabase.doctorGetNameAll(st, "doctor");
+		
+		Statement st =  conn.createStatement();
+		
+		ArrayList<String> arlist = new ArrayList<String>( );
+		
+		arlist = SqliteDatabase.selectAll(conn,st);
+		
 		//
 		
 		
@@ -166,8 +180,10 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         JComboBox <String> doctor_comboBox = new JComboBox <String> ();
         doctor_comboBox.setBounds(165, 52, 205, 23);
         getContentPane().add(doctor_comboBox);
-        doctor_comboBox.addItem("GUTIERREZ"); //doctor de ejemplo
-        
+      
+        for (int i = 0; arlist.size()>i; i++) {//anyade los nombres de los doctores de la base de datos al combo box
+        doctor_comboBox.addItem(arlist.get(i).toUpperCase());
+        }
         
         
         
