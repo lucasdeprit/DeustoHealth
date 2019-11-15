@@ -181,7 +181,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         doctor_comboBox.setBounds(165, 52, 205, 23);
         getContentPane().add(doctor_comboBox);
       
-        for (int i = 0; arlist.size()>i; i++) {//anyade los nombres de los doctores de la base de datos al combo box
+        for (int i = 0; arlist.size()>i; i++) {//anyade los nombres de los doctores de la base de datos al combo box 
         doctor_comboBox.addItem(arlist.get(i).toUpperCase());
         }
         
