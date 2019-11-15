@@ -199,9 +199,13 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         JButton save_btn = new JButton("GUARDAR");
         save_btn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
+        		String hora = (String) time_comboBox.getSelectedItem();
+        		String fecha = textField.getText().toString();
+        		String espacio = " ";
+        		String data = fecha + espacio +hora;
         		FileWriter flwriter = null;
         		try {
+        			System.out.println(data);
         			//crea el flujo para escribir en el archivo
         			flwriter = new FileWriter("data/citas.txt");
         			//crea un buffer o flujo intermedio antes de escribir directamente en el archivo
@@ -249,6 +253,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         doctor_lbl.setBounds(10, 52, 145, 26);
         getContentPane().add(doctor_lbl);
 	}
+	
 	
 	 @Override
 		public void propertyChange(PropertyChangeEvent event) {
