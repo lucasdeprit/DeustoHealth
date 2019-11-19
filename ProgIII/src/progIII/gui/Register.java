@@ -20,8 +20,8 @@ import javax.swing.SwingConstants;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 
-import bd.Conexion;
-import bd.SqliteDatabase;
+import progIII.bd.Conexion;
+import progIII.bd.SqliteDatabase;
 import progIII.logic.Doctor;
 import progIII.logic.Patient;
 

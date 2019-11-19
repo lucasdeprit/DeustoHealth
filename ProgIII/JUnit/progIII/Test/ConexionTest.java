@@ -7,7 +7,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
-import bd.Conexion;
+
+import progIII.bd.Conexion;
 import progIII.logic.Patient;
 public class ConexionTest {
 File bd=new File("JUnit/Bdtest/bdTest.test");

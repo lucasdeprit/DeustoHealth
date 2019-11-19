@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import bd.SqliteDatabase;
+import progIII.bd.SqliteDatabase;
 
 
 public class Login {
