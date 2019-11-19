@@ -15,6 +15,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Array;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
@@ -23,11 +25,13 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import bd.SqliteDatabase;
+import progIII.logic.Doctor;
 
 import javax.swing.JComboBox;
 import java.awt.Font;
@@ -41,6 +45,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 	JFormattedTextField  textField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
 	private JTextField reason_txf;
 	public JLabel username_lbl = new JLabel("New label");
+	public JComboBox <String> doctor_comboBox = new JComboBox <String> ();
 	Connection conn = null;
 	/**
 	 * Launch the application.
@@ -70,6 +75,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 	public Calendar() {
 		try {
 			initialize();
+			FillComboBox();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -177,13 +183,13 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         time_comboBox.addItem("20:00");
         
         
-        JComboBox <String> doctor_comboBox = new JComboBox <String> ();
+        
         doctor_comboBox.setBounds(165, 52, 205, 23);
         getContentPane().add(doctor_comboBox);
       
-        for (int i = 0; arlist.size()>i; i++) {//anyade los nombres de los doctores de la base de datos al combo box 
+        /*for (int i = 0; arlist.size()>i; i++) {//anyade los nombres de los doctores de la base de datos al combo box 
         doctor_comboBox.addItem(arlist.get(i).toUpperCase());
-        }
+        }*/
         
         
         
@@ -254,6 +260,24 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         getContentPane().add(doctor_lbl);
 	}
 	
+	private void FillComboBox() {
+		try {
+			String sql = "select * from doctor";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				String name = rs.getString("name");
+				doctor_comboBox.addItem(name);
+			}
+			
+		}catch(Exception e) {
+			
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+	}
+	
 	
 	 @Override
 		public void propertyChange(PropertyChangeEvent event) {
@@ -267,4 +291,5 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 	        }
 			
 		}
+	 
 }

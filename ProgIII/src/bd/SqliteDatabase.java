@@ -257,7 +257,7 @@ public class SqliteDatabase {
 	//metodo para seleccionar los nombres de los doctores
 	
 	public static ArrayList<String> selectAll(Connection conn, Statement stmt){
-        String sql = "SELECT  name  FROM  doctor";
+        String sql = "select name from doctor";
         ArrayList<String> arlist = new ArrayList<String>( );
         try ( ResultSet rs  = stmt.executeQuery(sql)){
             
@@ -265,9 +265,11 @@ public class SqliteDatabase {
         	
         	
             while (rs.next()) {
+            
             arlist.add(rs.getString("name"));
-                
-            return arlist;
+            
+            rs.close();    
+           
                 
             }
         } catch (SQLException e) {
