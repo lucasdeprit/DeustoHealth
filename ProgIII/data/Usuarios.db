@@ -1,5 +1,0 @@
-CREATE TABLE usuario (
-    "name" TEXT,
-    "password" TEXT,
-    "date" TEXT
-)
