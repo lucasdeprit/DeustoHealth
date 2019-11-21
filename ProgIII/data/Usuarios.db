@@ -1,0 +1,3 @@
+select * from appointment;
+select * from doctor;
+select * from patient;

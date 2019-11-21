@@ -208,7 +208,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         		String hora = (String) time_comboBox.getSelectedItem();
         		String fecha = textField.getText().toString();
         		String espacio = " ";
-        		//String data = fecha + espacio +hora;
+        		String data = fecha + espacio +hora;
         		//FileWriter flwriter = null;
         		
         		
@@ -218,7 +218,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 				{
 					pst.setInt(1, 2);//el numero de la cita que sea
 					pst.setString(2, reason_txf.getText());
-					pst.setString(3, fecha);
+					pst.setString(3, data);
 					pst.setString(4, getIdOfSelectedDoctor(doctor_comboBox.getSelectedItem().toString()));
 					pst.setString(5, getIdOfPatient(username_lbl.getText()));
 					
