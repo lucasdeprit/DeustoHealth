@@ -208,9 +208,29 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         		String hora = (String) time_comboBox.getSelectedItem();
         		String fecha = textField.getText().toString();
         		String espacio = " ";
-        		String data = fecha + espacio +hora;
-        		FileWriter flwriter = null;
-        		try {
+        		//String data = fecha + espacio +hora;
+        		//FileWriter flwriter = null;
+        		
+        		
+        		/////////METODO PARA GUARDAR LAS CITAS EN LA BD///////////
+        		
+        		try (PreparedStatement pst = conn.prepareStatement("INSERT INTO appointment(number,reason,date_ini,id_doctor,id_pacient) VALUES(?,?,?,?,?)");) 
+				{
+					pst.setInt(1, 2);//el numero de la cita que sea
+					pst.setString(2, reason_txf.getText());
+					pst.setString(3, fecha);
+					pst.setString(4, getIdOfSelectedDoctor(doctor_comboBox.getSelectedItem().toString()));
+					pst.setString(5, getIdOfPatient(username_lbl.getText()));
+					
+					pst.executeUpdate();
+					
+					JOptionPane.showMessageDialog(null, "Cita registrada");
+					
+				}catch(Exception e1) {
+					e1.printStackTrace();
+				}
+        		
+        		/*try {
         			System.out.println(data);
         			//crea el flujo para escribir en el archivo
         			flwriter = new FileWriter("data/citas.txt");
@@ -233,7 +253,11 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         					t.printStackTrace();
         				}
         			}
-        		}
+        		}*/
+        		
+        		
+        		
+        		
         	}
         		
         });
@@ -275,6 +299,64 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 			
 			JOptionPane.showMessageDialog(null, e);
 		}
+		
+		
+	}
+	
+	//////////////METODO PARA SABER EL ID DEL DOCTOR SELECCIONADO/////////////////
+	
+	private String getIdOfSelectedDoctor(String name) {
+		String id = null;
+		
+		
+		try {
+			String sql = "select * from doctor";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				if( name == rs.getString("name")) {
+				id = rs.getString("id");
+				}
+			}
+			
+		}catch(Exception e) {
+			
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+		
+		
+		return id;
+		
+	}
+	
+	//////////////METODO PARA SABER EL ID DEL PACIENTE QUE PIDE LA CITA/////////////////
+	
+	private String getIdOfPatient(String name) {
+	String id = null;
+		
+		
+		try {
+			String sql = "select * from patient";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				if( name == rs.getString("name")) {
+				id = rs.getString("id");
+				}
+			}
+			
+		}catch(Exception e) {
+			
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+		
+		
+		return id;
+		
 		
 	}
 	
