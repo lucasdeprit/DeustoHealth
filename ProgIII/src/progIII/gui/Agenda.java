@@ -24,17 +24,12 @@ public class Agenda extends Frame implements ActionListener{
 	protected JTextArea textArea;
 	protected String newLine = "\n";
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
 	 static final private String TEXT_ENTERED = "text";
 	 static final private String PREVIOUS = "previous";
 	    static final private String NEXT = "next";
-=======
-	static final private String TEXT_ENTERED = "text";
->>>>>>> branch 'lucas' of https://github.com/lucasdeprit/DeustoHealth
 
 	public Agenda() {
 		JToolBar toolBar = new JToolBar("Still draggable");
-<<<<<<< HEAD
 		 addButtons(toolBar);
 	        toolBar.setFloatable(false);
 	        toolBar.setRollover(true);
@@ -53,17 +48,7 @@ public class Agenda extends Frame implements ActionListener{
 		
 		
 	}
-	 protected JButton makeNavigationButton(String imageName ,String actionCommand,String toolTipText,String altText) {
-		 //Look for the image.
-	        String imgLocation = "/"
-	                             + imageName
-	                             + ".jpeg";
-	    URL imageURL = Agenda.class.getResource(imgLocation);
-=======
-
-
-
-	}
+	 
 	protected JButton makeNavigationButton(String imageName,
 			String actionCommand,
 			String toolTipText,
@@ -75,12 +60,11 @@ public class Agenda extends Frame implements ActionListener{
 		URL imageURL = JToolBar.class.getResource(imgLocation);
 
 		//Create and initialize the button.
->>>>>>> branch 'lucas' of https://github.com/lucasdeprit/DeustoHealth
 		JButton button = new JButton();
 		button.setActionCommand(actionCommand);
 		button.setToolTipText(toolTipText);
 		button.addActionListener(this);
-<<<<<<< HEAD
+
 		if (imageURL != null) {                      //image found
             button.setIcon(new ImageIcon(imageURL, altText));
         } else {                                     //no image found
@@ -88,7 +72,6 @@ public class Agenda extends Frame implements ActionListener{
             System.err.println("Resource not found: "
                                + imgLocation);
         }
-=======
 
 		if (imageURL != null) {                      //image found
 			button.setIcon(new ImageIcon(imageURL, altText));
@@ -96,38 +79,10 @@ public class Agenda extends Frame implements ActionListener{
 			button.setText(altText);
 			System.err.println("Resource not found: " + imgLocation);
 		}
-
->>>>>>> branch 'lucas' of https://github.com/lucasdeprit/DeustoHealth
 		return button;
-<<<<<<< HEAD
+
 }
-	 protected void addButtons(JToolBar toolBar) {
-	        JButton button = null;
-	 
-	        //first button
-	        button = makeNavigationButton("back", PREVIOUS,
-	                                      "Back to previous something-or-other",
-	                                      "Previous");
-	        toolBar.add(button);
-	 
-	 
-	        //third button
-	        button = makeNavigationButton("next", NEXT,
-	                                      "Forward to something-or-other",
-	                                      "Next");
-	        toolBar.add(button);
-	 
-	        //separator
-	        toolBar.addSeparator();
-	 
-	 
-	        //fifth component is NOT a button!
-	        JTextField textField = new JTextField("A text field");
-	        textField.setColumns(10);
-	        textField.addActionListener(this);
-	        textField.setActionCommand(TEXT_ENTERED);
-	        toolBar.add(textField);
-	    }
+
 	 private static void createAndShowGUI() {
 	        //Create and set up the window.
 	        JFrame frame = new JFrame("ToolBarDemo2");
@@ -140,8 +95,7 @@ public class Agenda extends Frame implements ActionListener{
 	        frame.pack();
 	        frame.setVisible(true);
 	    }
-=======
-	}
+
 	protected void addButtons(JToolBar toolBar) {
 		JButton button = null;
 
@@ -169,9 +123,6 @@ public class Agenda extends Frame implements ActionListener{
 		textField.setActionCommand(TEXT_ENTERED);
 		toolBar.add(textField);
 	}
-
->>>>>>> branch 'lucas' of https://github.com/lucasdeprit/DeustoHealth
-
 	public static void main(String[] args) {
 		 SwingUtilities.invokeLater(new Runnable() {
 	            public void run() {
