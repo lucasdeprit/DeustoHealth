@@ -19,17 +19,21 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
+import progIII.logic.*;
 import progIII.bd.SqliteDatabase;
+import progIII.logic.ThreadCompleteListener;
 
 
-public class Login {
+public class Login extends JFrame   implements ThreadCompleteListener {
 	
 	public JFrame frame;
 	private JTextField User_textField;
 	private JPasswordField User_passwordField;
 	private JTextField rol_textField;
 	Connection conn = null;
+	private boolean hayActividad;
+	NotifyingThread hilo;
+	static Login login_window;
 	
 	/* Lanzar la ventana()
 	*/
@@ -40,7 +44,7 @@ public class Login {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() { 
 				try { // crear la ventana y hacerla visible			
-					Login login_window = new Login();
+					login_window = new Login();
 					login_window.frame.setVisible(true);
 				}catch(Exception e){
 					e.printStackTrace();
@@ -53,6 +57,9 @@ public class Login {
 	public Login() { // inicializar contenidos de la ventana
 		initialize();
 		conn = SqliteDatabase.initBD("Usuarios");
+		hilo = new CompruebaInactividad(10);
+		hilo.addListener(this); // add ourselves as a listener
+		hilo.start(); // Start the Thread
 		/*File archivo = new File("JUnit/SqliteDatabasetest/SqliteDatabaseTest.test");
 		Conexion SqliteDatabase = new Conexion(archivo);
 		SqliteDatabase.abrir();
@@ -143,10 +150,12 @@ public class Login {
 		JButton btnRegister = new JButton("REGISTRARSE");
 		btnRegister.addActionListener(new ActionListener() {
 			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				Register register_window = new Register();
 				register_window.frame.setVisible(true);
+				hayActividad = true;
 			}
 		});
 		btnRegister.setForeground(new Color(51,0,51)); 
@@ -210,6 +219,17 @@ public class Login {
 
 		
 			
+	}
+
+	@Override
+	public void notifyOfThreadComplete(Thread thread) {
+		if (!hayActividad) {
+			System.exit(0);
+			System.out.println(hayActividad);
+		} else {
+			login_window.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		}
+		
 	}
 	
 }
