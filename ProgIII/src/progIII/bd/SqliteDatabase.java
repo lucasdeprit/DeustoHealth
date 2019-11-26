@@ -42,8 +42,8 @@ public class SqliteDatabase {
 			statement.setQueryTimeout(30);  // poner timeout 30 msg
 			try {
 				statement.executeUpdate("create table patient " +
-						"(name string" +           // Nombre del paciente
-						", id string" +           // Codigo identificacion del paciente
+						"(id INTEGER PRIMARY KEY AUTOINCREMENT " +           // Codigo identificacion del paciente
+						",name string " +         //  Nombre del paciente 
 						", password string" + 	  // Contraseña del paciente
 						", address string" +	  // Dirección de residencia del paciente
 						", mail string" +		  // Correo electrónico del paciente
@@ -51,9 +51,8 @@ public class SqliteDatabase {
 			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
 			try {
 				statement.executeUpdate("create table doctor " +
-						"(number integer" +		  // Número del doctor
+						"(id INTEGER PRIMARY KEY AUTOINCREMENT" +		  // Codigo identificacion del doctor
 						", name string" + 		  // Nombre del doctor
-						", id string" +           // Codigo identificacion del doctor
 						", password string" + 	  // Contraseña del doctor
 						", address string" +	  // Dirección de residencia del doctor
 						", mail string" +		  // Correo electrónico del doctor
@@ -62,9 +61,11 @@ public class SqliteDatabase {
 			
 			try {
 				statement.executeUpdate("create table appointment " +
-						"(number integer" +           // Numero de cita
+						"(number INTEGER PRIMARY KEY AUTOINCREMENT" +          // Numero de cita
 						", reason string" +           // razon por la que se da la cita
 						", date_ini date" +		  // fecha de inicio de la cita
+						", id_doctor integer" +	
+						", id_patient integer" +	
 						")");
 			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
 			log( Level.INFO, "Creada base de datos", null );
@@ -86,6 +87,7 @@ public class SqliteDatabase {
 			statement.setQueryTimeout(30);  // poner timeout 30 msg
 			statement.executeUpdate("drop table if exists patient");
 			statement.executeUpdate("drop table if exists doctor");
+			statement.executeUpdate("drop table if exists appointment");
 			log( Level.INFO, "Reiniciada base de datos", null );
 			return usarCrearTablasBD( con );
 		} catch (SQLException e) {
@@ -122,9 +124,9 @@ public class SqliteDatabase {
 	public static boolean patientInsert( Statement st, Patient patient ) {
 		String sentSQL = "";
 		try {
-			sentSQL = "insert into patient (name, id, password, address, mail) values(" +
-					"'" +patient.getName() + "', " +
-					secu(patient.getId())  + ", " +
+			sentSQL = "insert into patient (id, name, password, address, mail) values(" +
+					"'" +patient.getId() + "', " +
+					secu(patient.getName())  + ", " +
 					patient.getPassword() + ", " +
 					patient.getAddress() + ", " +
 					patient.getMail() +
@@ -147,10 +149,10 @@ public class SqliteDatabase {
 	 * @param idpatient	Id de paciente a buscar
 	 * @return	true si el paciente ya existe, false en caso contrario
 	 */
-	public static boolean patientSelect( Statement st, String idpatient ) {
+	public static boolean patientSelect( Statement st, String namepatient ) {
 		String sentSQL = "";
 		try {
-			sentSQL = "select * from patient where id='" + secu(idpatient) +"'";
+			sentSQL = "select * from patient where name='" + secu(namepatient) +"'";
 			ResultSet rs = st.executeQuery( sentSQL );
 			boolean existe = rs.next();  // Si existe el resultset no es vacÃ­o
 			rs.close();
@@ -172,11 +174,11 @@ public class SqliteDatabase {
 		String sentSQL = "";
 		try {
 			sentSQL = "update patient set" +
-					" name=" + patient.getName() + ", " +
+					" id=" + patient.getId() + ", " +
 					" password=" + patient.getPassword() + ", " +
 					" address=" + patient.getAddress() + ", " +
 					" mail=" + patient.getMail() +
-					" where id='" + secu(patient.getId()) + "'";
+					" where name='" + secu(patient.getName()) + "'";
 			int val = st.executeUpdate( sentSQL );
 			log( Level.INFO, "BD modificada " + val + " fila\t" + sentSQL, null );
 			if (val!=1) {  // Se tiene que modificar 1 - error si no
@@ -199,7 +201,7 @@ public class SqliteDatabase {
 	public static boolean patientDelete( Statement st, Patient patient) {
 		String sentSQL = "";
 		try {
-			sentSQL = "delete from patient where name='" + secu(patient.getId())+ "'";
+			sentSQL = "delete from patient where name='" + secu(patient.getName())+ "'";
 			int val = st.executeUpdate( sentSQL );
 			log( Level.INFO, "BD borrada " + val + " fila\t" + sentSQL, null );
 			return (val==1);
@@ -217,9 +219,9 @@ public class SqliteDatabase {
 	public static boolean doctorInsert( Statement st, Doctor doctor) {
 		String sentSQL = "";
 		try {
-			sentSQL = "insert into doctor (name, id, password, address, mail) values(" +
-					"'" + doctor.getName() + "', " +
-					secu(doctor.getId()) + ", " +
+			sentSQL = "insert into doctor (id, name, password, address, mail) values(" +
+					"'" + doctor.getId() + "', " +
+					secu(doctor.getName()) + ", " +
 					doctor.getPassword() + ", " +
 					doctor.getAddress() + ", " +
 					doctor.getAddress() + ", " +
@@ -238,10 +240,10 @@ public class SqliteDatabase {
 		}
 	}
 
-	public static boolean doctorSelect( Statement st, String iddoctor ) {
+	public static boolean doctorSelect( Statement st, String namedoctor ) {
 		String sentSQL = "";
 		try {
-			sentSQL = "select * from doctor where id='" + secu(iddoctor) +"'";
+			sentSQL = "select * from doctor where name='" + secu(namedoctor) +"'";
 			ResultSet rs = st.executeQuery( sentSQL );
 			boolean existe = rs.next();  // Si existe el resultset no es vacio
 			rs.close();
@@ -288,11 +290,11 @@ public class SqliteDatabase {
 		String sentSQL = "";
 		try {
 			sentSQL = "update doctor set" +
-					" name=" + doctor.getName() + ", " +
+					" id=" + doctor.getId() + ", " +
 					" password=" + doctor.getPassword() + ", " +
 					" address=" + doctor.getAddress() + ", " +
 					" mail=" + doctor.getMail() +
-					" where id='" + secu(doctor.getId()) + "'";
+					" where name='" + secu(doctor.getName()) + "'";
 			int val = st.executeUpdate( sentSQL );
 			log( Level.INFO, "BD modificada " + val + " fila\t" + sentSQL, null );
 			if (val!=1) { 
@@ -311,7 +313,7 @@ public class SqliteDatabase {
 	public static boolean doctorDelete( Statement st, Doctor doctor ) {
 		String sentSQL = "";
 		try {
-			sentSQL = "delete from doctor where name='" + secu(doctor.getId())+ "'";
+			sentSQL = "delete from doctor where name='" + secu(doctor.getName())+ "'";
 			int val = st.executeUpdate( sentSQL );
 			log( Level.INFO, "BD borrada " + val + " fila\t" + sentSQL, null );
 			return (val==1);
@@ -330,10 +332,12 @@ public class SqliteDatabase {
 	public static boolean appointmentInsert( Statement st, Appointment appointment ) {
 		String sentSQL = "";
 		try {
-			sentSQL = "insert into appointment (number, reason, date_ini) values(" +
+			sentSQL = "insert into appointment (number, reason, date_ini, id_doctor, id_patient) values(" +
 					"'" + 	secu(appointment.getId()) + "', " +
 					appointment.getReason() + ", " +
-					appointment.getIniH() +
+					appointment.getIniH() +", " +
+					appointment.getId_doctor() +", " +
+					appointment.getId_patient() +
 					")";
 			int val = st.executeUpdate( sentSQL );
 			log( Level.INFO, "BD añadida " + val + " fila\t" + sentSQL, null );
@@ -372,7 +376,10 @@ public class SqliteDatabase {
 			sentSQL = "update appointment set" +
 					" number=" + appointment.getId() + ", " +
 					" reason=" + appointment.getReason() + ", " +
-					" date=" + appointment.getIniH() + "'";
+					" date=" + appointment.getIniH() + ", " +
+					" id_doctor=" + appointment.getId_doctor() + ", " +
+					" id_patient=" + appointment.getId_patient() + "'";
+			
 			int val = st.executeUpdate( sentSQL );
 			log( Level.INFO, "BD modificada " + val + " fila\t" + sentSQL, null );
 			if (val!=1) { 

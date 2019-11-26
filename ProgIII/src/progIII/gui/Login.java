@@ -60,6 +60,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 		hilo = new CompruebaInactividad(10);
 		hilo.addListener(this); // add ourselves as a listener
 		hilo.start(); // Start the Thread
+		
 		/*File archivo = new File("JUnit/SqliteDatabasetest/SqliteDatabaseTest.test");
 		Conexion SqliteDatabase = new Conexion(archivo);
 		SqliteDatabase.abrir();
@@ -76,6 +77,8 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 		frame.setUndecorated(true); //para remover el marco de la ventana
 		frame.setLocationRelativeTo(null); // para centrar la ventana
 		
+		
+		
 		JButton btnLogin = new JButton("INICIAR SESION"); // crear boton
 		btnLogin.addActionListener(new ActionListener() { // definir accion que ejecutar� el boton
 			@Override
@@ -86,6 +89,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 				
 				
 				if( rol_textField.getText().toLowerCase().equals(p) || rol_textField.getText().toLowerCase().equals(d) ) {
+					
 					
 					SqliteDatabase.usarCrearTablasBD(conn);
 					
@@ -206,7 +210,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 		frame.getContentPane().add(title_lbl);
 		
 		rol_textField = new JTextField();
-		rol_textField.setBounds(129, 157, 214, 23);
+		rol_textField.setBounds(129, 157, 214, 32);
 		frame.getContentPane().add(rol_textField);
 		rol_textField.setColumns(10);
 		
@@ -214,7 +218,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 		rol_lbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rol_lbl.setForeground(Color.WHITE);
 		rol_lbl.setHorizontalAlignment(SwingConstants.RIGHT);
-		rol_lbl.setBounds(74, 160, 46, 14);
+		rol_lbl.setBounds(74, 160, 46, 29);
 		frame.getContentPane().add(rol_lbl);
 
 		

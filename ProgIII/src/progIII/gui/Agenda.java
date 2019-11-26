@@ -56,7 +56,7 @@ public class Agenda extends Frame implements ActionListener{
 		//Look for the image.
 		String imgLocation = "images/"
 				+ imageName
-				+ ".gif";
+				+ ".jpeg";
 		URL imageURL = JToolBar.class.getResource(imgLocation);
 
 		//Create and initialize the button.
@@ -100,14 +100,14 @@ public class Agenda extends Frame implements ActionListener{
 		JButton button = null;
 
 		//first button
-		button = makeNavigationButton("Back24", PREVIOUS,
+		button = makeNavigationButton("back", PREVIOUS,
 				"Back to previous something-or-other",
 				"Previous");
 		toolBar.add(button);
 
 
 		//third button
-		button = makeNavigationButton("Forward24", NEXT,
+		button = makeNavigationButton("next", NEXT,
 				"Forward to something-or-other",
 				"Next");
 		toolBar.add(button);

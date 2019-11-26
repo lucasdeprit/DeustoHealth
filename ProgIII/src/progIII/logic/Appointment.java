@@ -10,8 +10,9 @@ public class Appointment {
 	private String id;
 	private Date iniH, finH;
 	private String reason;
+	private int id_doctor, id_patient;
 
-	public Appointment(String iniH, String finH, String reason, String id) {
+	public Appointment(String iniH, String finH, String reason, String id, int id_doctor, int id_patient) {
 		SimpleDateFormat formatoEstablecido = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date inicio=null;
 		Date fin=null;
@@ -25,6 +26,8 @@ public class Appointment {
 		this.iniH = inicio;
 		this.finH = fin;
 		this.reason = reason;
+		this.id_doctor = id_doctor;
+		this.id_patient = id_patient;
 	}
 
 	// M�todo que comprueba si han pasado las citas, en ese caso las a�ade al
@@ -45,6 +48,8 @@ public class Appointment {
 		this.iniH = null;
 		this.finH = null;
 		this.reason = null;
+		this.id_doctor = 0;
+		this.id_patient = 0;
 	}
 
 	public Date getIniH() {
@@ -79,9 +84,26 @@ public class Appointment {
 		this.id = id;
 	}
 
+	public int getId_doctor() {
+		return id_doctor;
+	}
+
+	public void setId_doctor(int id_doctor) {
+		this.id_doctor = id_doctor;
+	}
+
+	public int getId_patient() {
+		return id_patient;
+	}
+
+	public void setId_patient(int id_patient) {
+		this.id_patient = id_patient;
+	}
+
 	@Override
 	public String toString() {
-		return "Appointment [id=" + id + ", iniH=" + iniH + ", finH=" + finH + ", reason=" + reason + "]";
+		return "Appointment [id=" + id + ", iniH=" + iniH + ", finH=" + finH + ", reason=" + reason + ", id_doctor="
+				+ id_doctor + ", id_patient=" + id_patient + "]";
 	}
 	
 	

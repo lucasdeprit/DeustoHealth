@@ -214,13 +214,12 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         		
         		/////////METODO PARA GUARDAR LAS CITAS EN LA BD///////////
         		
-        		try (PreparedStatement pst = conn.prepareStatement("INSERT INTO appointment(number,reason,date_ini,id_doctor,id_pacient) VALUES(?,?,?,?,?)");) 
+        		try (PreparedStatement pst = conn.prepareStatement("INSERT INTO appointment(number,reason,date_ini,id_doctor,id_patient) VALUES(?,?,?,?,?)");) 
 				{
-					pst.setInt(1, 2);//el numero de la cita que sea
 					pst.setString(2, reason_txf.getText());
 					pst.setString(3, data);
-					pst.setString(4, getIdOfSelectedDoctor(doctor_comboBox.getSelectedItem().toString()));
-					pst.setString(5, getIdOfPatient(username_lbl.getText()));
+					pst.setInt(4, getIdOfSelectedDoctor(doctor_comboBox.getSelectedItem().toString()));
+					pst.setInt(5, getIdOfPatient(username_lbl.getText()));
 					
 					pst.executeUpdate();
 					
@@ -305,8 +304,8 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 	
 	//////////////METODO PARA SABER EL ID DEL DOCTOR SELECCIONADO/////////////////
 	
-	private String getIdOfSelectedDoctor(String name) {
-		String id = null;
+	private int getIdOfSelectedDoctor(String name) {
+		int id = 0;
 		
 		
 		try {
@@ -316,7 +315,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 			
 			while(rs.next()) {
 				if( name == rs.getString("name")) {
-				id = rs.getString("id");
+				id = rs.getInt(1);
 				}
 			}
 			
@@ -333,8 +332,8 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 	
 	//////////////METODO PARA SABER EL ID DEL PACIENTE QUE PIDE LA CITA/////////////////
 	
-	private String getIdOfPatient(String name) {
-	String id = null;
+	private int getIdOfPatient(String name) {
+	int id = 0;
 		
 		
 		try {
@@ -344,7 +343,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 			
 			while(rs.next()) {
 				if( name == rs.getString("name")) {
-				id = rs.getString("id");
+				id = rs.getInt(1);
 				}
 			}
 			
