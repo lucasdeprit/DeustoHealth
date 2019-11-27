@@ -22,10 +22,13 @@ import org.neodatis.odb.ODBFactory;
 
 import progIII.bd.Conexion;
 import progIII.bd.SqliteDatabase;
+import progIII.logic.CompruebaInactividad;
 import progIII.logic.Doctor;
+import progIII.logic.NotifyingThread;
 import progIII.logic.Patient;
+import progIII.logic.ThreadCompleteListener;
 
-public class Register {
+public class Register  extends JFrame   implements ThreadCompleteListener {
 	
 	public JFrame frame;
 	private JTextField name_textField;
@@ -34,6 +37,9 @@ public class Register {
 	private JTextField rol_textField;
 	private JPasswordField user_passwordField;
 	Connection conn = null;
+	private boolean hayActividad;
+	NotifyingThread hilo;
+	static Register register_window;
 	/* Lanzar la ventana()
 	*/
 	public static void main(String[] args) {
@@ -56,6 +62,9 @@ public class Register {
 		Conexion c = new Conexion(bd, odb1);
 		initialize(c);
 	*/	
+		hilo = new CompruebaInactividad(60);//Introducimos tiempo que deseamos antes de que se cierre
+		hilo.addListener(this); // add ourselves as a listener
+		hilo.start(); // Start the Thread
 		initialize();
 		conn = SqliteDatabase.initBD("Usuarios");
 		
@@ -128,6 +137,7 @@ public class Register {
 		JButton register_btn = new JButton("");
 		register_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				hayActividad = true;
 			/*	// BD AITOR
 				try {
 					ODB abrir = ODBFactory.open(c.getRuta());
@@ -210,6 +220,7 @@ public class Register {
 		JButton return_btn = new JButton("");
 		return_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				hayActividad = true;
 				frame.dispose();
 				Login is_window = new Login(); 
 				is_window.frame.setVisible(true); 
@@ -226,6 +237,17 @@ public class Register {
 		title_lbl.setBounds(78, 11, 275, 41); 
 		title_lbl.setIcon(new ImageIcon(Login.class.getResource("/icons8-registration-64.png"))); //Registration icon by Icons8
 		frame.getContentPane().add(title_lbl);
+		
+	}
+
+	@Override
+	public void notifyOfThreadComplete(Thread thread) {
+		if (!hayActividad) {
+			System.exit(0);
+			System.out.println(hayActividad);
+		} else {
+			register_window.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		}
 		
 	}
 }
