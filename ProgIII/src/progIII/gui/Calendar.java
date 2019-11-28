@@ -198,9 +198,14 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         time_lbl.setBounds(10, 127, 145, 23);
         getContentPane().add(time_lbl);
         
-        JButton exit_btn = new JButton("SALIR");
-        exit_btn.setBounds(10, 299, 162, 23);
-        getContentPane().add(exit_btn);
+        JButton btnExit = new JButton("SALIR");
+        btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+        btnExit.setBounds(10, 299, 162, 23);
+        getContentPane().add(btnExit);
         
         JButton save_btn = new JButton("GUARDAR");
         save_btn.addActionListener(new ActionListener() {

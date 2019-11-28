@@ -57,7 +57,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 	public Login() { // inicializar contenidos de la ventana
 		initialize();
 		conn = SqliteDatabase.initBD("Usuarios");
-		hilo = new CompruebaInactividad(10);
+		hilo = new CompruebaInactividad(100);
 		hilo.addListener(this); // add ourselves as a listener
 		hilo.start(); // Start the Thread
 		
