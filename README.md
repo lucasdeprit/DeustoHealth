@@ -16,45 +16,42 @@ Ventana en la que el usuario podrá entrar con su cuenta. Si el usuario desea re
 
 
 
-Ventana 2: Ventana en la que el usuario podrá registrarse en la base de datos introduciendo sus datos personales (Nombre, DNI,
+####  Ventana 2: 
+Ventana en la que el usuario podrá registrarse en la base de datos introduciendo sus datos personales (Nombre, DNI,
 Dirección, NSS,...).
 Debemos comprobar cuál es el rol del usuario, es decir, si es médico o si es un paciente. Dependiendo de este rol se abrirá una
 ventana u otra.
 
-Ventana 3: Ventana Principal  del paciente, en la que se ejecutará el programa, el paciente podrá elegir “Pedir cita” se le redirige
+#### Ventana 3: 
+Ventana Principal  del paciente, en la que se ejecutará el programa, el paciente podrá elegir “Pedir cita” se le redirige
 a la Ventana 4, si elige “Próximas citas”, se le lleva a la Ventana 5.
 
-Ventana 4. Ventana en la que se pedirá una cita, se deberán rellenar los campos, si todo es correcto nos asignan un médico y nuestra
+#### Ventana 4: 
+Ventana en la que se pedirá una cita, se deberán rellenar los campos, si todo es correcto nos asignan un médico y nuestra
 cita será aceptada. En esta ventana podremos observar la disponibilidad de médicos en esta especialidad, para que el usuario pueda 
 escoger a qué hora quiere la cita.
 
-Ventana 5. Aquí podremos observar las próximas citas que hemos solicitado y ver los detalles de cada una de ellas (Médico asignado,
+#### Ventana 5:
+Aquí podremos observar las próximas citas que hemos solicitado y ver los detalles de cada una de ellas (Médico asignado,
 motivo, gravedad,...). 
 
-Ventana 6. Esta ventana será la principal del médico, podremos elegir entre ver que citas tiene el médico (Ventana 7), 
+#### Ventana 6:
+Esta ventana será la principal del médico, podremos elegir entre ver que citas tiene el médico (Ventana 7), 
 cancelar una cita (Ventana 8), mirar el expediente de sus pacientes (Ventana 9).
 
-Ventana 7. El médico podrá visualizar en una ventana las próximas citas que tiene, es decir, tendrá un calendario en el
+#### Ventana 7:
+El médico podrá visualizar en una ventana las próximas citas que tiene, es decir, tendrá un calendario en el
 que visualizará las citas.
 
-
-
-Ventana 8. El médico podrá seleccionar una o más citas que quiera cancelar, dado que por motivos personales no esté disponible,
+#### Ventana 8: 
+El médico podrá seleccionar una o más citas que quiera cancelar, dado que por motivos personales no esté disponible,
 por lo tanto, los pacientes que hayan perdido su cita por este motivo se les notificará para que puedan escoger otra cita.
 
-Ventana 9. Esta ventana permitirá que el médico pueda ver el historial médico de sus pacientes. 
+#### Ventana 9:
+Esta ventana permitirá que el médico pueda ver el historial médico de sus pacientes. 
 
 
-
-
-
-
-
-
-
-
-
-
-
-Grupo: P02-09.
-Participantes: Joel De la Calle,Lucas Deprit,Aitor Morais.
+##### Grupo:
+P02-09.
+##### Participantes: 
+Joel De la Calle,Lucas Deprit,Aitor Morais.
