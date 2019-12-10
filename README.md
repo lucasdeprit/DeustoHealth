@@ -10,7 +10,8 @@ Este sistema nos ayudará también a tener cierta fluidez en los hospitales y a 
 
 ### Ideas de interfaz
 
-Ventana 1: Ventana en la que el usuario podrá entrar con su cuenta. Si el usuario desea registrarse puede hacerlo pulsando en el botón
+#### Ventana 1: 
+Ventana en la que el usuario podrá entrar con su cuenta. Si el usuario desea registrarse puede hacerlo pulsando en el botón
 “Registro”, que lo llevará a la Ventana 2.
 
 
