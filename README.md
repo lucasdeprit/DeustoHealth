@@ -53,5 +53,17 @@ Esta ventana permitirá que el médico pueda ver el historial médico de sus pac
 
 ##### Grupo:
 P02-09.
-##### Participantes: 
-Joel De la Calle,Lucas Deprit,Aitor Morais.
+##### Participantes:
+<table align="center">
+  <tr>
+<td align="center"><a href="https://github.com/joeldelacalle">
+ <img src="https://avatars2.githubusercontent.com/u/43130347?s=400&v=4" 
+        width="150px;" alt="Joel De la Calle"/><br /><sub><b>Joel De la Calle </b></sub></a><br/></td>
+<td align="center"><a href="https://github.com/lucasdeprit">
+ <img src="https://avatars1.githubusercontent.com/u/33033880?s=400&v=4" 
+        width="150px;" alt="Lucas Deprit"/><br /><sub><b>Lucas Deprit</b></sub></a><br/></td>
+<td align="center"><a href="https://github.com/aitormorais">
+  <img src="https://avatars3.githubusercontent.com/u/43671531?s=400&v=4" 
+        width="150px;" alt="Aitor Morais"/><br /><sub><b>Aitor Morais</b></sub></a><br/></td>
+  </tr>
+</table>
