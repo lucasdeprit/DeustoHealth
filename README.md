@@ -1,16 +1,14 @@
 # DeustoHealth
-DeustoHealth
-
-Resumen/Contexto
+## Resumen/Contexto
 
 Crear un programa que permita la gestión de citas de los pacientes para ir al médico, los usuarios deberán darse de alta para poder tener acceso. De estos usuarios se almacenará el DNI, una contraseña y el rol de este usuario (paciente o médico) estos datos se utilizarán en el login. Tras realizar este paso, accederemos a la ventana principal, donde se mostrará la información del usuario, el expediente médico, las citas reservadas y podremos solicitar una cita. En la siguiente ventana, deberán introducirse los siguientes datos; día, mes, año, hora, motivo de la cita, etc. Tras rellenar los datos necesarios se le asignará un médico@. Todos los procesos serán almacenados en bases de datos y en archivos de texto, es decir, se guardarán los médicos, los pacientes, los historiales, las citas … 
 
-Objetivos del proyecto y funcionalidad
+## Objetivos del proyecto y funcionalidad
 
 El objetivo del proyecto es crear un programa cuya interfaz sea sencilla de utilizar, facilite a los usuarios el no tener que ir hasta su centro médico más cercano para pedir cita, los médicos podrán gestionar sus citas y observar el historial de sus pacientes. Además, nos ayudará a que no se olviden las citas al ser notificados de cuando es/son.
 Este sistema nos ayudará también a tener cierta fluidez en los hospitales y a reducir los largos tiempos en las salas de espera.
 
-Ideas de interfaz
+### Ideas de interfaz
 
 Ventana 1: Ventana en la que el usuario podrá entrar con su cuenta. Si el usuario desea registrarse puede hacerlo pulsando en el botón
 “Registro”, que lo llevará a la Ventana 2.
