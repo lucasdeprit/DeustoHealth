@@ -16,6 +16,13 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Homepage {
 
@@ -58,12 +65,26 @@ public class Homepage {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100,100,600,450); // definir tamaño ventana 
+		frame.setBounds(100,100,600,250); // definir tamaño ventana 
 		frame.getContentPane().setBackground(SystemColor.textHighlight);	//color del fondo de la ventana 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		frame.getContentPane().setLayout(null); // definir distribucion componentes en la ventana 
 		frame.setUndecorated(true); //para remover el marco de la ventana 
 		frame.setLocationRelativeTo(null); // para centrar la ventana
+		
+		JPopupMenu popupMenu = new JPopupMenu();
+		popupMenu.setBounds(16, 0, 36, 29);
+		addPopup(frame.getContentPane(), popupMenu);
+		
+		JMenuItem exit_item = new JMenuItem("Salir");
+		exit_item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Login login = new Login();
+				login.frame.setVisible(true);
+			}
+		});
+		popupMenu.add(exit_item);
 		rol_lbl.setForeground(Color.WHITE);
 		
 		
@@ -118,14 +139,21 @@ public class Homepage {
 			}
 		});
 		make_appointment_btn.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		make_appointment_btn.setBounds(30, 210, 190, 57);
+		make_appointment_btn.setBounds(30, 164, 190, 57);
 		frame.getContentPane().add(make_appointment_btn);
 		
 		JButton view_appointment_btn = new JButton("Ver Cita/as");
+		view_appointment_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Appointment appointment = new Appointment();
+				appointment.frame.setVisible(true);
+			}
+		});
 		view_appointment_btn.setIcon(new ImageIcon(Homepage.class.getResource("/icons8-eye-48.png"))); // Eye icon by Icons8
 		view_appointment_btn.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		view_appointment_btn.setBackground(Color.WHITE);
-		view_appointment_btn.setBounds(30, 313, 190, 57);
+		view_appointment_btn.setBounds(349, 164, 190, 57);
 		frame.getContentPane().add(view_appointment_btn);
 		
 		
@@ -133,6 +161,23 @@ public class Homepage {
 
 		
 		
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }
 

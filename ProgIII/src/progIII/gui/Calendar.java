@@ -202,6 +202,9 @@ public class Calendar extends JFrame implements PropertyChangeListener {
         btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
+				Homepage homepage = new Homepage();
+				homepage.user_name_lbl.setText(username_lbl.getText());
+				homepage.frame.setVisible(true);
 			}
 		});
         btnExit.setBounds(10, 299, 162, 23);
