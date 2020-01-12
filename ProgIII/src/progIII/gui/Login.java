@@ -8,13 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-<<<<<<< HEAD
 import java.sql.ResultSet;
 import java.sql.Statement;
-=======
 import java.sql.SQLException;
->>>>>>> login
-
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -43,13 +39,13 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 	private boolean hayActividad;
 	NotifyingThread hilo;
 	static Login login_window;
-<<<<<<< HEAD
-	public String user = User_textField.getText();
-	public String pass = String.valueOf( User_passwordField.getPassword());
-=======
+
+	public String user;
+	public String pass;
+
 	JRadioButton Doctor;
 	JRadioButton Paciente;
->>>>>>> login
+
 	
 	/* Lanzar la ventana()
 	*/
@@ -119,7 +115,8 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 						
 						try
 						{
-<<<<<<< HEAD
+							user = User_textField.getText();
+							pass = String.valueOf( User_passwordField.getPassword());
 							
 							//PreparedStatement pst = conn.prepareStatement("SELECT * FROM patient WHERE name=? AND password=?");
 							
@@ -160,11 +157,11 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 							
 							// por ahora no se comprueba es para seguir haciendo cosas
 							
-=======
-							pst.setString(1, User_textField.getText());
-							pst.setString(2, User_passwordField.getPassword().toString());
-							pst.executeQuery();
->>>>>>> login
+
+							st.setString(1, User_textField.getText());
+							st.setString(2, User_passwordField.getPassword().toString());
+							st.executeQuery();
+
 							
 							JOptionPane.showMessageDialog(null, "Sesion iniciada como Paciente");
 							
@@ -174,13 +171,13 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 							homepage_window.rol_lbl.setText(p.toUpperCase());
 							homepage_window.frame.setVisible(true);
 							
-<<<<<<< HEAD
+
 							
 							
-						}catch(Exception ex) {
-=======
+						
+
 						}catch(SQLException ex) {
->>>>>>> login
+
 							ex.printStackTrace();
 							JOptionPane.showMessageDialog(null, "error al iniciar sesion, vuelva a intentarlo");
 						}
