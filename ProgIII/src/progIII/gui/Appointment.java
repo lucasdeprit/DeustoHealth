@@ -149,8 +149,8 @@ public class Appointment {
 				
 			"Razon: " + rs.getString("reason") + "\n"+
 			"Fecha: " +rs.getDate("date_ini")+ "\n"+
-			"Doctor(id): "+rs.getInt("id_doctor")+ "\n"
-			
+			"Doctor(id): "+rs.getInt("id_doctor") + "\n"+
+			"Paciente(id): "+rs.getInt("id_patient")
 		
 						 );
 			}
