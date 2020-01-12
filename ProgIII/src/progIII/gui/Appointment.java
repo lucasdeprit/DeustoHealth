@@ -17,7 +17,7 @@ import progIII.bd.SqliteDatabase;
 import javax.swing.JButton;
 
 public class Appointment {
-
+//ClASE APPOINTMENT
 	public JFrame frame;
 	private JList Appointment_list;
 	public JLabel user_name_lb = new JLabel("");
