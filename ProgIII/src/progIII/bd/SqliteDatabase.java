@@ -44,18 +44,18 @@ public class SqliteDatabase {
 				statement.executeUpdate("create table patient " +
 						"(id INTEGER PRIMARY KEY AUTOINCREMENT " +           // Codigo identificacion del paciente
 						",name string " +         //  Nombre del paciente 
-						", password string" + 	  // Contraseña del paciente
-						", address string" +	  // Dirección de residencia del paciente
-						", mail string" +		  // Correo electrónico del paciente
+						", password string" + 	  // Contraseï¿½a del paciente
+						", address string" +	  // Direcciï¿½n de residencia del paciente
+						", mail string" +		  // Correo electrï¿½nico del paciente
 						")");
 			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
 			try {
 				statement.executeUpdate("create table doctor " +
 						"(id INTEGER PRIMARY KEY AUTOINCREMENT" +		  // Codigo identificacion del doctor
 						", name string" + 		  // Nombre del doctor
-						", password string" + 	  // Contraseña del doctor
-						", address string" +	  // Dirección de residencia del doctor
-						", mail string" +		  // Correo electrónico del doctor
+						", password string" + 	  // Contraseï¿½a del doctor
+						", address string" +	  // Direcciï¿½n de residencia del doctor
+						", mail string" +		  // Correo electrï¿½nico del doctor
 						")");
 			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
 			
@@ -100,9 +100,9 @@ public class SqliteDatabase {
 	 * @param con	Conexion abierta de la BD
 	 * @param st	Sentencia abierta de la BD
 	 */
-	public static void cerrarBD( Connection con, Statement st ) {
+	public static void cerrarBD( Connection con ) {
 		try {
-			if (st!=null) st.close();
+			//if (st!=null) st.close();
 			if (con!=null) con.close();
 			log( Level.INFO, "Cierre de base de datos", null );
 		} catch (SQLException e) {
@@ -116,10 +116,10 @@ public class SqliteDatabase {
 	/////////////////////////////////////////////////////////////////////
 
 
-	/** Añade un paciente a la tabla abierta de BD, usando la sentencia INSERT de SQL
+	/** Aï¿½ade un paciente a la tabla abierta de BD, usando la sentencia INSERT de SQL
 	 * @param st	Sentencia ya abierta de Base de Datos (con la estructura de tabla correspondiente al paciente)
-	 * @param patient	Paciente a añadir en la base de datos
-	 * @return	true si la inserción es correcta, false en caso contrario
+	 * @param patient	Paciente a aï¿½adir en la base de datos
+	 * @return	true si la inserciï¿½n es correcta, false en caso contrario
 	 */
 	public static boolean patientInsert( Statement st, Patient patient ) {
 		String sentSQL = "";
@@ -132,7 +132,7 @@ public class SqliteDatabase {
 					patient.getMail() +
 					")";
 			int val = st.executeUpdate( sentSQL );
-			log( Level.INFO, "BD añadida " + val + " fila\t" + sentSQL, null );
+			log( Level.INFO, "BD aï¿½adida " + val + " fila\t" + sentSQL, null );
 			if (val!=1) {  // Se tiene que aÃ±adir 1 - error si no
 				log( Level.SEVERE, "Error en insert de BD\t" + sentSQL, null );
 				return false;  
@@ -228,8 +228,8 @@ public class SqliteDatabase {
 					doctor.getMail() +
 					")";
 			int val = st.executeUpdate( sentSQL );
-			log( Level.INFO, "BD añadida " + val + " fila\t" + sentSQL, null );
-			if (val!=1) {  // Se tiene que añadir 1 - error si no
+			log( Level.INFO, "BD aï¿½adida " + val + " fila\t" + sentSQL, null );
+			if (val!=1) {  // Se tiene que aï¿½adir 1 - error si no
 				log( Level.SEVERE, "Error en insert de BD\t" + sentSQL, null );
 				return false;  
 			}
@@ -340,8 +340,8 @@ public class SqliteDatabase {
 					appointment.getId_patient() +
 					")";
 			int val = st.executeUpdate( sentSQL );
-			log( Level.INFO, "BD añadida " + val + " fila\t" + sentSQL, null );
-			if (val!=1) {  // Se tiene que añadir 1 - error si no
+			log( Level.INFO, "BD aï¿½adida " + val + " fila\t" + sentSQL, null );
+			if (val!=1) {  // Se tiene que aï¿½adir 1 - error si no
 				log( Level.SEVERE, "Error en insert de BD\t" + sentSQL, null );
 				return false;  
 			}
