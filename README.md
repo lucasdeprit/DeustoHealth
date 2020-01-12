@@ -15,10 +15,11 @@ Este sistema nos ayudará también a tener cierta fluidez en los hospitales y a 
 ```sh
 git clone https://github.com/lucasdeprit/DeustoHealth
 ```
-2.Ejecutar .jar
-Tenemos que abrir el cmd en la ruta : DeustoHealth/ProgIII.
- Luego aplicar siguiente comando: 
-
+2.Movernos al directorio donde se encuentra el proyecto:
+```sh
+cd DeustoHealth/ProgIII
+```
+3 Lanzar App
 ```sh
 java App.jar
 ```
