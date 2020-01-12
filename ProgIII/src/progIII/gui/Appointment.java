@@ -47,6 +47,10 @@ public class Appointment {
 	public Appointment() {
 		initialize();
 	}
+	public Appointment(String n) {
+		this.name=n;
+		initialize();
+	}
 
 	/**
 	 * Initialize the contents of the frame.

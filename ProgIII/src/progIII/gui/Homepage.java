@@ -70,7 +70,7 @@ public class Homepage {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100,100,600,250); // definir tamaño ventana 
+		frame.setBounds(100,100,600,250); // definir tamaï¿½o ventana 
 		frame.getContentPane().setBackground(SystemColor.textHighlight);	//color del fondo de la ventana 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		frame.getContentPane().setLayout(null); // definir distribucion componentes en la ventana 
@@ -133,7 +133,7 @@ public class Homepage {
 			public void actionPerformed(ActionEvent arg0) {
 				String d = "doctor";
 				if(rol_lbl.getText().toLowerCase().equals(d)) {
-					JOptionPane.showMessageDialog(null, "El doctor no puede pedir una cita médica");
+					JOptionPane.showMessageDialog(null, "El doctor no puede pedir una cita mï¿½dica");
 				}else {
 					frame.dispose();
 					Calendar window = new Calendar();
@@ -151,9 +151,9 @@ public class Homepage {
 		view_appointment_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				Appointment appointment = new Appointment();
+				Appointment appointment = new Appointment(user_name_lbl.getText().toLowerCase());
 				appointment.user_name_lb.setText(user_name_lbl.getText().toLowerCase());
-				appointment.setName(user_name_lbl.getText().toLowerCase());
+				//appointment.setName(user_name_lbl.getText().toLowerCase());
 				appointment.rol = rol_lbl.getText().toUpperCase();
 				appointment.frame.setVisible(true);
 			}
