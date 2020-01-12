@@ -203,6 +203,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				Homepage homepage = new Homepage();
+				homepage.rol_lbl.setText("paciente");
 				homepage.user_name_lbl.setText(username_lbl.getText());
 				homepage.frame.setVisible(true);
 			}
@@ -227,7 +228,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 					pst.setString(2, reason_txf.getText());
 					pst.setString(3, data);
 					pst.setInt(4, getIdOfSelectedDoctor(doctor_comboBox.getSelectedItem().toString()));
-					pst.setInt(5, getIdOfPatient(username_lbl.getText()));
+					pst.setInt(5, getIdOfPatient(username_lbl.getText().toLowerCase()));
 					
 					pst.executeUpdate();
 					
@@ -317,17 +318,18 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 		
 		
 		try {
-			String sql = "select * from doctor";
+			String sql = "select * from doctor where name = '" + name + "' ";
 			PreparedStatement pst = conn.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				if( name == rs.getString("name")) {
-				id = rs.getInt("id");
+				
+				id = rs.getInt(1);
+				
 				}
-				pst.close();
-				rs.close();
-			}
+			pst.close();
+			rs.close();
+			
 			
 		}catch(Exception e) {
 			
@@ -347,22 +349,19 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 		
 		
 		try {
-			String sql = "select * from patient";
+			String sql = "select * from patient where name = '" + name + "' " ;
 			PreparedStatement pst = conn.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				System.out.println("tuputamadre");
+				
 				
 				id = rs.getInt(1);
-				if( name.equals(rs.getString("name"))) {
 				
-					
-					
-				}
-				pst.close();
-				rs.close();
+				
 			}
+			pst.close();
+			rs.close();
 			
 		}catch(Exception e) {
 			

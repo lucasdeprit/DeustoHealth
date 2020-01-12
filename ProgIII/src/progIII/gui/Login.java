@@ -145,11 +145,12 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 									JOptionPane.showMessageDialog(null, "Sesion iniciada como Paciente");
 									
 									frame.dispose();
-									Homepage homepage_window = new Homepage();
-									homepage_window.user_name_lbl.setText(User_textField.getText().toUpperCase());
+									Homepage homepage_window = new Homepage(user);
+									//homepage_window.user_name_lbl.setText(User_textField.getText().toUpperCase());
 									homepage_window.rol_lbl.setText(p.toUpperCase());
 									homepage_window.frame.setVisible(true);
 									
+									SqliteDatabase.cerrarBD(conn);
 									
 								}else {
 									JOptionPane.showMessageDialog(null, "error al iniciar sesion, vuelva a intentarlo");
@@ -212,7 +213,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 									frame.dispose();
 									Homepage homepage_window = new Homepage();
 									homepage_window.user_name_lbl.setText(User_textField.getText().toUpperCase());
-									homepage_window.rol_lbl.setText(p.toUpperCase());
+									homepage_window.rol_lbl.setText(d.toUpperCase());
 									homepage_window.frame.setVisible(true);
 									
 									

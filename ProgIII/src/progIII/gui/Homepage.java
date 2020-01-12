@@ -60,6 +60,11 @@ public class Homepage {
 		initialize();
 	}
 
+	public Homepage(String name) {
+		this.user_name_lbl.setText(name);
+		initialize();
+		
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -147,7 +152,9 @@ public class Homepage {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				Appointment appointment = new Appointment();
-				appointment.user_name_lbl.setText(user_name_lbl.getText());
+				appointment.user_name_lb.setText(user_name_lbl.getText().toLowerCase());
+				appointment.setName(user_name_lbl.getText().toLowerCase());
+				appointment.rol = rol_lbl.getText().toUpperCase();
 				appointment.frame.setVisible(true);
 			}
 		});

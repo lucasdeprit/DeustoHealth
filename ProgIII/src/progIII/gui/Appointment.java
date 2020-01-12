@@ -20,7 +20,9 @@ public class Appointment {
 
 	public JFrame frame;
 	private JList Appointment_list;
-	public JLabel user_name_lbl = new JLabel("New label");
+	public JLabel user_name_lb = new JLabel("");
+	public String rol ;
+	public String name;
 	
 
 	/**
@@ -71,7 +73,8 @@ public class Appointment {
 				public void actionPerformed(ActionEvent arg0) {
 					frame.dispose();
 					Homepage homepage = new Homepage();
-					homepage.user_name_lbl.setText(user_name_lbl.getText());
+					homepage.user_name_lbl.setText(user_name_lb.getText().toUpperCase());
+					homepage.rol_lbl.setText(rol.toString());
 					homepage.frame.setVisible(true);
 				}
 			});
@@ -100,13 +103,19 @@ public class Appointment {
 		Connection con = SqliteDatabase.initBD("Usuarios");
 		SqliteDatabase.usarCrearTablasBD(con);
 		
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM appointment ")){ //where id_patient = (select id from patient where name = '"+ user_name_lbl.getText() +"'
+		System.out.println(name);
+		
+		 
+		 try (PreparedStatement pst = con.prepareStatement("SELECT * FROM appointment where id_patient like (select id from patient where name= '"+ name +"')")){
 																							//no funciona todavia por paciente
 			ResultSet rs = pst.executeQuery();
 			
 			DefaultListModel list = new DefaultListModel();
 			
+			
+			
 			while(rs.next()) {
+				 
 				list.addElement(rs.getString("reason"));
 			}
 			Appointment_list.setModel(list);
@@ -148,4 +157,14 @@ public class Appointment {
 			e.printStackTrace();
 		}
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
 }
