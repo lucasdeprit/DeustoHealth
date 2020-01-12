@@ -1,20 +1,26 @@
 package progIII.gui;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollBar;
+import javax.swing.JTextArea;
 
 import progIII.bd.SqliteDatabase;
+import javax.swing.JButton;
 
 public class Appointment {
 
 	public JFrame frame;
 	private JList Appointment_list;
+	public JLabel user_name_lbl = new JLabel("New label");
 	
 
 	/**
@@ -50,21 +56,52 @@ public class Appointment {
 		frame.getContentPane().setLayout(null);
 		
 		Appointment_list = new JList();
-		Appointment_list.setBounds(10, 21, 414, 217);
+		Appointment_list.setBounds(10, 11, 414, 217);
 		frame.getContentPane().add(Appointment_list);
 		loadList();
 		
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(407, 21, 17, 217);
 		frame.getContentPane().add(scrollBar);
+		
+		JButton btnSalir = new JButton("SALIR");
+		btnSalir.setBounds(10, 238, 89, 23);
+		frame.getContentPane().add(btnSalir);
+		 btnSalir.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					frame.dispose();
+					Homepage homepage = new Homepage();
+					homepage.user_name_lbl.setText(user_name_lbl.getText());
+					homepage.frame.setVisible(true);
+				}
+			});
+		JButton btnVerDetalles = new JButton("VER DETALLES");
+		btnVerDetalles.setBounds(165, 238, 114, 23);
+		frame.getContentPane().add(btnVerDetalles);
+		btnVerDetalles.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+					Appointment_list.setVisible(false);
+					
+					
+					JTextArea Appointment_details_list = new JTextArea();
+					Appointment_details_list.setBounds(1, 21, 414, 217);
+					frame.getContentPane().add(Appointment_details_list);
+				
+					loadDetailsText(Appointment_details_list);
+					
+				}
+			});
+		
 	}
 	
 	public void loadList() {
+		
 		Connection con = SqliteDatabase.initBD("Usuarios");
 		SqliteDatabase.usarCrearTablasBD(con);
 		
-		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM appointment")){
-			
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM appointment ")){ //where id_patient = (select id from patient where name = '"+ user_name_lbl.getText() +"'
+																							//no funciona todavia por paciente
 			ResultSet rs = pst.executeQuery();
 			
 			DefaultListModel list = new DefaultListModel();
@@ -73,6 +110,36 @@ public class Appointment {
 				list.addElement(rs.getString("reason"));
 			}
 			Appointment_list.setModel(list);
+			pst.close();
+			rs.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	public void loadDetailsText(JTextArea  Appointment_details_list ) {
+		Connection con = SqliteDatabase.initBD("Usuarios");
+		SqliteDatabase.usarCrearTablasBD(con);
+		
+		try (PreparedStatement pst = con.prepareStatement("SELECT * FROM appointment where reason = '"+ Appointment_list.getSelectedValue().toString() +"'")){ 
+			ResultSet rs = pst.executeQuery();
+			
+		
+			
+			while(rs.next()) {
+			Appointment_details_list.setText(
+				
+			"Razon: " + rs.getString("reason") + "\n"+
+			"Fecha: " +rs.getDate("date_ini")+ "\n"+
+			"Doctor(id): "+rs.getInt("id_doctor")+ "\n"
+			
+		
+						 );
+			}
+		
 			pst.close();
 			rs.close();
 			

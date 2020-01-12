@@ -147,6 +147,7 @@ public class Homepage {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				Appointment appointment = new Appointment();
+				appointment.user_name_lbl.setText(user_name_lbl.getText());
 				appointment.frame.setVisible(true);
 			}
 		});

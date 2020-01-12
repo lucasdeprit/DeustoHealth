@@ -323,7 +323,7 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 			
 			while(rs.next()) {
 				if( name == rs.getString("name")) {
-				id = rs.getInt(1);
+				id = rs.getInt("id");
 				}
 			}
 			

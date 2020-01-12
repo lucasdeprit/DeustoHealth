@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,6 +36,8 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 	private boolean hayActividad;
 	NotifyingThread hilo;
 	static Login login_window;
+	public String user = User_textField.getText();
+	public String pass = String.valueOf( User_passwordField.getPassword());
 	
 	/* Lanzar la ventana()
 	*/
@@ -95,23 +99,64 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 					
 					if(rol_textField.getText().toLowerCase().equals(p)){
 						
-						try (PreparedStatement pst = conn.prepareStatement("SELECT * FROM patient WHERE name=? AND password=?");) 
+						int resultado = 0;
+						
+						try
 						{
-							pst.setString(1, User_textField.getText());
-							pst.setString(2, User_passwordField.getPassword().toString());
 							
-							pst.executeQuery();
+							//PreparedStatement pst = conn.prepareStatement("SELECT * FROM patient WHERE name=? AND password=?");
+							
+							
+							//pst.setString(1, User_textField.getText());
+							//pst.setString(2, User_passwordField.getPassword().toString());
+							
+							
+							
+							//pst.executeQuery();
+							
+							
+							
+							String sql = "select * from patient where name = '" + user + "'and password = '" + pass + "' ";
+							
+							PreparedStatement st = conn.prepareStatement(sql);
+							ResultSet rs = st.executeQuery();
+							
+							if(rs.next()) {
+								
+								resultado = 1;
+								
+								if(resultado == 1) {
+									
+									JOptionPane.showMessageDialog(null, "Sesion iniciada como Paciente");
+									
+									frame.dispose();
+									Homepage homepage_window = new Homepage();
+									homepage_window.user_name_lbl.setText(User_textField.getText().toUpperCase());
+									homepage_window.rol_lbl.setText(p.toUpperCase());
+									homepage_window.frame.setVisible(true);
+									
+									
+								}else {
+									JOptionPane.showMessageDialog(null, "error al iniciar sesion, vuelva a intentarlo");
+								}
+							}
+							
+							// por ahora no se comprueba es para seguir haciendo cosas
+							
 							
 							JOptionPane.showMessageDialog(null, "Sesion iniciada como Paciente");
-						
+							
 							frame.dispose();
 							Homepage homepage_window = new Homepage();
 							homepage_window.user_name_lbl.setText(User_textField.getText().toUpperCase());
 							homepage_window.rol_lbl.setText(p.toUpperCase());
 							homepage_window.frame.setVisible(true);
 							
+							
+							
 						}catch(Exception ex) {
 							ex.printStackTrace();
+							JOptionPane.showMessageDialog(null, "error al iniciar sesion, vuelva a intentarlo");
 						}
 						
 					}if(rol_textField.getText().toLowerCase().equals(d)){
@@ -223,6 +268,22 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 
 		
 			
+	}
+
+	public JTextField getUser_textField() {
+		return User_textField;
+	}
+
+	public void setUser_textField(JTextField user_textField) {
+		User_textField = user_textField;
+	}
+
+	public JPasswordField getUser_passwordField() {
+		return User_passwordField;
+	}
+
+	public void setUser_passwordField(JPasswordField user_passwordField) {
+		User_passwordField = user_passwordField;
 	}
 
 	@Override
