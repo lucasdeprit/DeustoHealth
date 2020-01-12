@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -91,8 +92,9 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 				//BD JOEL
 				String p = "paciente";
 				String d = "doctor";
+				boolean paciente = Paciente.isSelected();
 				//mandamps info a la clase que comprueba la actividad
-				LoginCorrecto log = new LoginCorrecto(User_textField.getText(), User_passwordField.getPassword().toString()).isTrue();
+				LoginCorrecto log = new LoginCorrecto(User_textField.getText(), User_passwordField.getPassword().toString(),conn,paciente);
 				
 				//if(LoginCorrecto.isTrue()&&paciente.isSelected())->try cacth cy acceso
 				
@@ -107,7 +109,6 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 						{
 							pst.setString(1, User_textField.getText());
 							pst.setString(2, User_passwordField.getPassword().toString());
-							
 							pst.executeQuery();
 							
 							JOptionPane.showMessageDialog(null, "Sesion iniciada como Paciente");
@@ -118,7 +119,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 							homepage_window.rol_lbl.setText(p.toUpperCase());
 							homepage_window.frame.setVisible(true);
 							
-						}catch(Exception ex) {
+						}catch(SQLException ex) {
 							ex.printStackTrace();
 						}
 						
@@ -140,7 +141,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 							homepage_window.rol_lbl.setText(d.toUpperCase());
 							homepage_window.frame.setVisible(true);
 							
-						}catch(Exception ex) {
+						}catch(SQLException ex) {
 							ex.printStackTrace();
 						}
 					

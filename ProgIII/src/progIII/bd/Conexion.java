@@ -63,7 +63,7 @@ public class Conexion {
 			break;
 
 		}
-		//jug.setDeporte("Tiro de barra Aragonesa");
+		
 		odb.store(p);
 	}
 	public void eliminarDoctor(String atributo,String valor) {
