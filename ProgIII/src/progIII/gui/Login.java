@@ -114,50 +114,129 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 						int resultado = 0;
 						
 						try
-						(PreparedStatement pst = conn.prepareStatement("SELECT * FROM patient WHERE name=? AND password=?");) 
 						{
-							pst.setString(1, User_textField.getText());
-							pst.setString(2, User_passwordField.getPassword().toString());
+							user = User_textField.getText();
+							pass = String.valueOf(User_passwordField.getText());
 							
-							pst.executeQuery();
-							ResultSet rs = pst.executeQuery();
+							System.out.println(pass);
+							//PreparedStatement pst = conn.prepareStatement("SELECT * FROM patient WHERE name=? AND password=?");
 							
-							if (rs.next() == true) {
 							
-							JOptionPane.showMessageDialog(null, "Sesion iniciada como Paciente");
-						
-							frame.dispose();
-							Homepage homepage_window = new Homepage();
-							homepage_window.user_name_lbl.setText(User_textField.getText().toUpperCase());
-							homepage_window.rol_lbl.setText(p.toUpperCase());
-							homepage_window.frame.setVisible(true);
-							}else {
-								JOptionPane.showMessageDialog(null, "Sesion no iniciada como Paciente");
+							//pst.setString(1, User_textField.getText());
+							//pst.setString(2, User_passwordField.getPassword().toString());
+							
+							
+							
+							//pst.executeQuery();
+							
+							
+							
+							String sql = "select * from patient where name = '" + user + "'and password = '" + pass + "' ";
+							
+							PreparedStatement st = conn.prepareStatement(sql);
+							ResultSet rs = st.executeQuery();
+							
+							if(rs.next()) {
+								
+								resultado = 1;
+								
+								if(resultado == 1) {
+									
+									JOptionPane.showMessageDialog(null, "Sesion iniciada como Paciente");
+									
+									frame.dispose();
+									Homepage homepage_window = new Homepage();
+									homepage_window.user_name_lbl.setText(User_textField.getText().toUpperCase());
+									homepage_window.rol_lbl.setText(p.toUpperCase());
+									homepage_window.frame.setVisible(true);
+									
+									
+								}else {
+									JOptionPane.showMessageDialog(null, "error al iniciar sesion, vuelva a intentarlo");
+								}
 							}
-						}catch(Exception ex) {
+							
+							// por ahora no se comprueba es para seguir haciendo cosas
+							
+
+							
+
+							
+							
+
+							
+							
+						
+
+						}catch(SQLException ex) {
+
 							ex.printStackTrace();
+							JOptionPane.showMessageDialog(null, "error al iniciar sesion, vuelva a intentarlo");
 						}
 						
 					}if(Doctor.isSelected()){
 						
-						try (PreparedStatement pst = conn.prepareStatement("SELECT * FROM doctor WHERE name=? AND password=?");) 
+						int resultado = 0;
+						
+						try
 						{
-							pst.setString(1, User_textField.getText());
-							pst.setString(2, User_passwordField.getPassword().toString());
+							user = User_textField.getText();
+							pass = String.valueOf(User_passwordField.getText());
 							
-							pst.executeQuery();
+							System.out.println(pass);
+							//PreparedStatement pst = conn.prepareStatement("SELECT * FROM patient WHERE name=? AND password=?");
 							
 							
-							JOptionPane.showMessageDialog(null, "Sesion iniciada como Doctor");
+							//pst.setString(1, User_textField.getText());
+							//pst.setString(2, User_passwordField.getPassword().toString());
 							
-							frame.dispose();
-							Homepage homepage_window = new Homepage();
-							homepage_window.user_name_lbl.setText(User_textField.getText().toUpperCase());
-							homepage_window.rol_lbl.setText(d.toUpperCase());
-							homepage_window.frame.setVisible(true);
 							
+							
+							//pst.executeQuery();
+							
+							
+							
+							String sql = "select * from doctor where name = '" + user + "'and password = '" + pass + "' ";
+							
+							PreparedStatement st = conn.prepareStatement(sql);
+							ResultSet rs = st.executeQuery();
+							
+							if(rs.next()) {
+								
+								resultado = 1;
+								
+								if(resultado == 1) {
+									
+									JOptionPane.showMessageDialog(null, "Sesion iniciada como Doctor");
+									
+									frame.dispose();
+									Homepage homepage_window = new Homepage();
+									homepage_window.user_name_lbl.setText(User_textField.getText().toUpperCase());
+									homepage_window.rol_lbl.setText(p.toUpperCase());
+									homepage_window.frame.setVisible(true);
+									
+									
+								}else {
+									JOptionPane.showMessageDialog(null, "error al iniciar sesion, vuelva a intentarlo");
+								}
+							}
+							
+							// por ahora no se comprueba es para seguir haciendo cosas
+							
+
+							
+
+							
+							
+
+							
+							
+						
+
 						}catch(SQLException ex) {
+
 							ex.printStackTrace();
+							JOptionPane.showMessageDialog(null, "error al iniciar sesion, vuelva a intentarlo");
 						}
 					
 				}

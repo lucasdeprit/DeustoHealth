@@ -177,7 +177,7 @@ public class Register  extends JFrame   implements ThreadCompleteListener {
 						try (PreparedStatement pst = conn.prepareStatement("INSERT INTO patient(id,name,password,address,mail) VALUES(?,?,?,?,?)");) 
 						{
 							pst.setString(2, name_textField.getText());
-							pst.setString(3, user_passwordField.getPassword().toString());
+							pst.setString(3, user_passwordField.getText());
 							pst.setString(4, address_textField.getText());
 							pst.setString(5, email_textField.getText());
 							
@@ -193,7 +193,7 @@ public class Register  extends JFrame   implements ThreadCompleteListener {
 						try (PreparedStatement pst = conn.prepareStatement("INSERT INTO doctor(id,name,password,address,mail) VALUES(?,?,?,?,?)");) 
 						{
 							pst.setString(2, name_textField.getText());
-							pst.setString(3, user_passwordField.getPassword().toString());
+							pst.setString(3, user_passwordField.getText());
 							pst.setString(4, address_textField.getText());
 							pst.setString(5, email_textField.getText());
 							

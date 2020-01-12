@@ -325,6 +325,8 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 				if( name == rs.getString("name")) {
 				id = rs.getInt("id");
 				}
+				pst.close();
+				rs.close();
 			}
 			
 		}catch(Exception e) {
@@ -350,9 +352,16 @@ public class Calendar extends JFrame implements PropertyChangeListener {
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				if( name == rs.getString("name")) {
+				System.out.println("tuputamadre");
+				
 				id = rs.getInt(1);
+				if( name.equals(rs.getString("name"))) {
+				
+					
+					
 				}
+				pst.close();
+				rs.close();
 			}
 			
 		}catch(Exception e) {
