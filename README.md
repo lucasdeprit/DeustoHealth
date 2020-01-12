@@ -8,8 +8,26 @@ Crear un programa que permita la gestión de citas de los pacientes para ir al m
 El objetivo del proyecto es crear un programa cuya interfaz sea sencilla de utilizar, facilite a los usuarios el no tener que ir hasta su centro médico más cercano para pedir cita, los médicos podrán gestionar sus citas y observar el historial de sus pacientes. Además, nos ayudará a que no se olviden las citas al ser notificados de cuando es/son.
 Este sistema nos ayudará también a tener cierta fluidez en los hospitales y a reducir los largos tiempos en las salas de espera.
 
+### Datos Login Usuario
+Usuario :joel  
 
-### Installation
+Contraseña:joel  
+
+Rol:paciente
+
+Usuario:lucas 
+
+Contraseña:lucas  
+
+rol:paciente
+### Datos Login Medico
+Usuario:Aitor 
+
+Contraseña: Aitor  
+
+Rol: doctor
+
+### Instalacion
 
 1. Clonar el repositorio
 ```sh
