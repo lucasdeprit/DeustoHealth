@@ -48,7 +48,7 @@ public class Appointment {
 		initialize();
 	}
 	public Appointment(String n) {
-		//CAMBIO
+		//CAMBIO.
 		this.name=n;
 		initialize();
 	}
