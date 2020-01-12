@@ -61,7 +61,7 @@ public class Homepage {
 	}
 
 	public Homepage(String name) {
-		this.user_name_lbl.setText(name);
+		   this.user_name_lbl.setText(name);
 		initialize();
 		
 	}
