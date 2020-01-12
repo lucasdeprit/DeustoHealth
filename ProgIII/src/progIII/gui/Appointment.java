@@ -61,11 +61,11 @@ public class Appointment {
 		loadList();
 		
 		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(407, 21, 17, 217);
+		scrollBar.setBounds(407, 11, 17, 217);
 		frame.getContentPane().add(scrollBar);
 		
 		JButton btnSalir = new JButton("SALIR");
-		btnSalir.setBounds(10, 238, 89, 23);
+		btnSalir.setBounds(20, 239, 89, 23);
 		frame.getContentPane().add(btnSalir);
 		 btnSalir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -76,7 +76,7 @@ public class Appointment {
 				}
 			});
 		JButton btnVerDetalles = new JButton("VER DETALLES");
-		btnVerDetalles.setBounds(165, 238, 114, 23);
+		btnVerDetalles.setBounds(164, 239, 114, 23);
 		frame.getContentPane().add(btnVerDetalles);
 		btnVerDetalles.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -130,6 +130,7 @@ public class Appointment {
 		
 			
 			while(rs.next()) {
+			
 			Appointment_details_list.setText(
 				
 			"Razon: " + rs.getString("reason") + "\n"+
