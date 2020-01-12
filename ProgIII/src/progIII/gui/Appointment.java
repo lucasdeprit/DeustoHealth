@@ -48,6 +48,7 @@ public class Appointment {
 		initialize();
 	}
 	public Appointment(String n) {
+		//CAMBIO
 		this.name=n;
 		initialize();
 	}
