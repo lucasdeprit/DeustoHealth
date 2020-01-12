@@ -9,14 +9,25 @@ El objetivo del proyecto es crear un programa cuya interfaz sea sencilla de util
 Este sistema nos ayudará también a tener cierta fluidez en los hospitales y a reducir los largos tiempos en las salas de espera.
 
 ### Datos Login Usuario
-Usuario :joel
-Contraseña:joel
+Usuario :joel  
+
+Contraseña:joel  
+
 Rol:paciente
+
+Usuario:lucas 
+
+Contraseña:lucas  
+
+rol:paciente
 ### Datos Login Medico
-Usuario:Aitor
-Contraseña: Aitor
-Rol doctor
-### Installation
+Usuario:Aitor 
+
+Contraseña: Aitor  
+
+Rol: doctor
+
+### Instalacion
 
 1. Clonar el repositorio
 ```sh
