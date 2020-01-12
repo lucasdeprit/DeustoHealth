@@ -9,19 +9,23 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import progIII.logic.*;
 import progIII.bd.SqliteDatabase;
-import progIII.logic.ThreadCompleteListener;
+
+import javax.swing.JRadioButton;
 
 
 public class Login extends JFrame   implements ThreadCompleteListener {
@@ -29,11 +33,12 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 	public JFrame frame;
 	private JTextField User_textField;
 	private JPasswordField User_passwordField;
-	private JTextField rol_textField;
 	Connection conn = null;
 	private boolean hayActividad;
 	NotifyingThread hilo;
 	static Login login_window;
+	JRadioButton Doctor;
+	JRadioButton Paciente;
 	
 	/* Lanzar la ventana()
 	*/
@@ -86,14 +91,17 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 				//BD JOEL
 				String p = "paciente";
 				String d = "doctor";
+				//mandamps info a la clase que comprueba la actividad
+				LoginCorrecto log = new LoginCorrecto(User_textField.getText(), User_passwordField.getPassword().toString()).isTrue();
 				
+				//if(LoginCorrecto.isTrue()&&paciente.isSelected())->try cacth cy acceso
 				
-				if( rol_textField.getText().toLowerCase().equals(p) || rol_textField.getText().toLowerCase().equals(d) ) {
+				if( Doctor.isSelected()||Paciente.isSelected()) {
 					
 					
 					SqliteDatabase.usarCrearTablasBD(conn);
 					
-					if(rol_textField.getText().toLowerCase().equals(p)){
+					if(Paciente.isSelected()){
 						
 						try (PreparedStatement pst = conn.prepareStatement("SELECT * FROM patient WHERE name=? AND password=?");) 
 						{
@@ -114,7 +122,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 							ex.printStackTrace();
 						}
 						
-					}if(rol_textField.getText().toLowerCase().equals(d)){
+					}if(Doctor.isSelected()){
 						
 						try (PreparedStatement pst = conn.prepareStatement("SELECT * FROM doctor WHERE name=? AND password=?");) 
 						{
@@ -209,18 +217,46 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 		title_lbl.setIcon(new ImageIcon(Login.class.getResource("/icons8-user-30.png")));//User icon by Icons8 
 		frame.getContentPane().add(title_lbl);
 		
-		rol_textField = new JTextField();
-		rol_textField.setBounds(129, 157, 214, 32);
-		frame.getContentPane().add(rol_textField);
-		rol_textField.setColumns(10);
-		
 		JLabel rol_lbl = new JLabel("ROL:");
 		rol_lbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rol_lbl.setForeground(Color.WHITE);
 		rol_lbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		rol_lbl.setBounds(74, 160, 46, 29);
 		frame.getContentPane().add(rol_lbl);
-
+		JList<JTextField> seleccion = new JList<JTextField>();
+		JTextField doctor = new JTextField("Doctor");
+		doctor.setVisible(true);
+		
+		JTextField paciente = new JTextField("Paciente");
+		paciente.setVisible(true);
+		
+		seleccion.add(doctor, 0);
+		seleccion.add(paciente,1);
+		seleccion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		seleccion.setForeground(Color.WHITE);
+		//seleccion.setHorizontalAlignment(SwingConstants.RIGHT);
+		seleccion.setBounds(74, 160, 46, 29);
+		frame.getContentPane().add(rol_lbl);
+		
+		Paciente = new JRadioButton("Paciente");
+		Paciente.setForeground(Color.WHITE);
+		Paciente.setBounds(151, 165, 73, 18);
+		frame.getContentPane().add(Paciente);
+		
+		Doctor=new JRadioButton("Doctor");
+		Doctor.setForeground(Color.WHITE);
+		Doctor.setBounds(236, 165, 67, 18);
+		frame.getContentPane().add(Doctor);
+		seleccion.setVisible(true);
+		ButtonGroup contenedor = new ButtonGroup();
+		contenedor.add(Doctor);
+		contenedor.add(Paciente);
+		/*JRadioButton contenedor = new JRadioButton();
+		contenedor.add(Doctor);
+		contenedor.add(Paciente);
+		contenedor.setVisible(true);
+		
+*/
 		
 			
 	}
@@ -235,5 +271,4 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 		}
 		
 	}
-	
 }

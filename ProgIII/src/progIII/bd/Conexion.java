@@ -78,7 +78,7 @@ public class Conexion {
         }
       
 	public void imprimirBDPatient() {
-		//Generamos un conjunto de objetos y los traemos a odb conectado Estaria bien que en vez de patient fuese User pero no consigo ponerlo asi
+		//Generamos un conjunto de objetos y los traemos a odb conectado 
 		Objects<Patient> objects=this.odb.getObjects(Patient.class);
 		//Numero de objetos en la BD
 		System.out.println(objects.size()+"Patients: ");
@@ -92,7 +92,22 @@ public class Conexion {
 		 }
 		
 	}
-	public Objects<Patient> ReturnBdinList(){
+	public void imprimirBDDoctor() {
+		//Generamos un conjunto de objetos y los traemos a odb conectado Estaria bien que en vez de patient fuese User pero no consigo ponerlo asi
+		Objects<Doctor> objects=this.odb.getObjects(Doctor.class);
+		//Numero de objetos en la BD
+		System.out.println(objects.size()+"Patients: ");
+		int i=1;
+		while(objects.hasNext()){
+		       // Creo un objeto Patient y almaceno ahí el objeto
+		       Doctor d= objects.next();
+		      
+		       // Imprimo las propiedades que me interes de ese objeto en este caso todas
+		       System.out.println((i++) + "\t: " + d.toString());
+		 }
+		
+	}
+	public Objects<Patient> ReturnBdinListPatient(){
 		Objects<Patient> objects=this.odb.getObjects(Patient.class);
 		return objects;
 		
