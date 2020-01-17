@@ -30,6 +30,7 @@ public class Homepage {
 	public JLabel rol_lbl = new JLabel("New label");
 	public JLabel user_name_lbl = new JLabel("New label");
 	
+	
 	/**
 	 * Launch the application.
 	 * @throws UnsupportedLookAndFeelException 
@@ -60,8 +61,9 @@ public class Homepage {
 		initialize();
 	}
 
-	public Homepage(String name) {
+	public Homepage(String name, String rol) {
 		   this.user_name_lbl.setText(name);
+		   this.rol_lbl.setText(rol);
 		initialize();
 		
 	}
@@ -151,7 +153,7 @@ public class Homepage {
 		view_appointment_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				Appointment appointment = new Appointment(user_name_lbl.getText().toLowerCase());
+				Appointment appointment = new Appointment(user_name_lbl.getText().toLowerCase(),rol_lbl.getText().toLowerCase());
 				appointment.user_name_lb.setText(user_name_lbl.getText().toLowerCase());
 				//appointment.setName(user_name_lbl.getText().toLowerCase());
 				appointment.rol = rol_lbl.getText().toUpperCase();

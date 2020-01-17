@@ -14,7 +14,7 @@ public class CompruebaInactividad extends NotifyingThread {
 	@Override
 	public void doRun() {
 		try {
-			Thread.sleep(segundos * 1000);
+			Thread.sleep(segundos * 10000);
 		} catch (InterruptedException e) {
 
 		}
