@@ -25,6 +25,7 @@ public class Appointment {
 	public JLabel user_name_lb = new JLabel("");
 	public String rol;
 	public String name;
+	
 
 	/**
 	 * Launch the application.
