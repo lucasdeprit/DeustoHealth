@@ -42,6 +42,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 
 	public String user;
 	public String pass;
+	public String rol;
 
 	JRadioButton Doctor;
 	JRadioButton Paciente;
@@ -68,6 +69,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 	
 	public Login() { // inicializar contenidos de la ventana.
 		initialize();
+		
 		conn = SqliteDatabase.initBD("Usuarios");
 		hilo = new CompruebaInactividad(100);
 		hilo.addListener(this); // add ourselves as a listener
@@ -111,6 +113,8 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 					
 					if(Paciente.isSelected()){
 						
+						rol = "paciente";
+						
 						int resultado = 0;
 						
 						try
@@ -145,7 +149,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 									JOptionPane.showMessageDialog(null, "Sesion iniciada como Paciente");
 									
 									frame.dispose();
-									Homepage homepage_window = new Homepage(user);
+									Homepage homepage_window = new Homepage(user,rol);
 									//homepage_window.user_name_lbl.setText(User_textField.getText().toUpperCase());
 									homepage_window.rol_lbl.setText(p.toUpperCase());
 									homepage_window.frame.setVisible(true);
@@ -177,6 +181,7 @@ public class Login extends JFrame   implements ThreadCompleteListener {
 						
 					}if(Doctor.isSelected()){
 						
+						rol = "doctor";
 						int resultado = 0;
 						
 						try
