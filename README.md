@@ -39,7 +39,7 @@ cd DeustoHealth/ProgIII
 ```
 3 Lanzar App
 ```sh
-java App.jar
+java -jar App.jar
 ```
 
 
