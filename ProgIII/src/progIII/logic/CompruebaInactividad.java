@@ -3,7 +3,7 @@ package progIII.logic;
 import java.util.logging.Logger;
 
 public class CompruebaInactividad extends NotifyingThread {
-	static int segundos;
+	static int segundos ;
 	public static Logger logger = Logger.getLogger(CompruebaInactividad.class.getName());
 	public boolean hayActividad;
 
